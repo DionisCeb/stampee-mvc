@@ -1,0 +1,12 @@
+@import url(elements/live-cercle.css);
+
+.live-bidding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.section-title{
+    margin-bottom: 20px;
+}

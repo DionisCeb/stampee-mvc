@@ -1,0 +1,15 @@
+@import url(../composantes/cards/news-card.css);
+.section__news {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/*container*/
+
+.card__news--container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}

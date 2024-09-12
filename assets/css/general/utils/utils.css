@@ -1,0 +1,42 @@
+/*line*/
+@import url(line.css);
+/*variables*/
+@import url(variables.css);
+:root {
+    --header__title: rgb(128, 104, 59);
+}
+
+.flex-center-with-gap {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+/*flex-column*/
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/*flex-center-column*/
+.flex-center-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*header with line*/
+.live-bidding__title,
+.header__title--with_line h2{
+    color: var(--header__title);
+    font-size: 40px;
+}

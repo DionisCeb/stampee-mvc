@@ -1,0 +1,113 @@
+@import url(pagination.css);
+:root {
+    --color-bg-options: #c79370;
+    --color-options: white;
+}
+.filter-box,
+.filter__option--box {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-box {
+    background: var(--card-news-bg);
+    padding: 20px;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.filter__option--box {
+    gap: 5px;
+}
+
+/*filter option title*/
+.filter__title--value {
+    background: var(--btn-secondary);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /*for future animation handling*/
+    cursor: pointer;
+    /* arrow down/up */
+    & .arrow-value-box {
+        color: rgb(211, 211, 211);
+    }
+}
+
+
+/*select*/
+.filter--box__select {
+    width: 100%;
+    pad: 10px;
+    border: none;
+    background-color: var(--color-bg-options);
+    color: var(--color-options);
+}
+
+.value-box {
+    background-color:  var(--color-bg-options);
+    color: var(--color-options);
+    border-radius: 3px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/*checkboxes*/
+.value-box div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.value-box div input {
+    width: 20px;
+}
+
+
+/*animations*/
+
+.filter-box .bid-now,
+.filter__option--box  {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+
+/*footer*/
+
+.filter__option--box:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.filter__option--box:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.filter__option--box:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.filter__option--box:nth-child(4) {
+    animation-delay: 0.5s;
+}
+.filter__option--box:nth-child(5) {
+    animation-delay: 0.6s;
+}
+
+/*the button*/
+.filter-box .bid-now {
+    animation-delay: 0.8s;
+}
+
+.filter-box .bid-now:hover {
+    scale: (0.8);
+}

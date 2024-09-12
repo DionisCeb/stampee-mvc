@@ -1,0 +1,81 @@
+
+.catalog-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    padding: 20px;
+}
+
+/*width declaration*/
+.catalog__auctions--section {
+    width: 80%;
+}
+
+.catalog__filter--section {
+    width: 15%;
+}
+
+/*catalog section*/
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+@media only screen and (min-width: 1500px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+    
+}
+@media only screen and (max-width: 1500px) {
+    /*filter section*/
+    .catalog__filter--section {
+        width: 25%;
+    }
+
+    /*catalog section*/
+    .catalog__auctions--section {
+        width: 75%;
+    }
+
+}
+
+@media only screen and (max-width: 1050px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .catalog__filter--section {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /*the filter and catalog sections to column*/
+    .catalog-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /*filter and catalog section to 100%*/
+    .catalog__auctions--section,
+    .catalog__filter--section {
+        width: 100%;
+    }
+
+    /*filter-box*/
+    .filter-box {
+        font-size: 16px;
+    }
+
+}
+

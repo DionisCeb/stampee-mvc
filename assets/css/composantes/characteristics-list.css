@@ -1,0 +1,32 @@
+.list_box {
+    width: 100%;
+}
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    /* font-size: 20px; */
+    font-weight: bold;
+    cursor: pointer;
+    background: var(--transparent-white-bg);
+    border-block-end: 1px solid rgb(62, 62, 126);
+    transition: background-color 0.5s, color 0.5s, transform 0.5s;
+}
+
+/*Title span*/
+span.item-title {
+    color: #9f633a;
+}
+
+/*Description title*/
+span.item-desc {
+    color: #4c6898;
+}
+
+.list-item:hover {
+    transform: scale(0.99);
+    background-color: rgb(255, 255, 255);
+    /* color: white; */
+}
+
+

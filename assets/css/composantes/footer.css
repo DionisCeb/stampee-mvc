@@ -1,0 +1,98 @@
+:root {
+  /* --footer-bg: rgb(185, 185, 185);
+  --copyright-bg:rgb(164, 164, 164); */
+  --footer-bg: rgba(0, 0, 0, 0.3);
+  --copyright-bg:rgba(0, 0, 0, 0.5);
+}
+/*footer-section*/
+.footer-section {
+  background-color: var(--footer-bg)
+}
+/*logo*/
+.logo-row {
+  display: flex;
+}
+
+/*footer columns in flex*/
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+
+/*column-links*/
+.column-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/*column*/
+.column {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*title*/
+.column-title {
+  font-size: 25px;
+  color: wheat;
+}
+
+/*<a> links*/
+.footer-link {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+
+
+/*newsletter*/
+
+.column.newsletter-column {
+  width: 40%;
+}
+
+
+.column.newsletter-column h1 {
+  font-size: 25px;
+}
+
+.newsletter__subtitle--title--box.small-newsletter {
+  width: 100%;
+}
+
+
+@media screen and (max-width: 1436px) { 
+  .column.newsletter-column {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 527px) { 
+  .column.newsletter-column {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+
+/*copyright*/
+.footer-copyright {
+  display: flex;
+  width: 100%;
+  padding: 30px;
+  justify-content: center;
+  background-color: var(--copyright-bg);
+}
+
+.footer-copyright p {
+  color: white;
+}

@@ -1,0 +1,27 @@
+@keyframes arrowRight {
+    0%   {left: 0px; top: 0px;}
+    100%  {left: 10px; top: 0px;}
+  }
+.news-btn {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    width: 250px;
+    font-size: 20px;
+}
+
+.arrow-right {
+    position: relative;
+    width: 20px;
+    display: flex;
+  }
+
+  .arrow-right img {
+    width: 100%;
+  }
+
+
+  .news-btn:hover .arrow-right{
+    animation: arrowRight 1s 2;
+    animation-direction:initial;
+  }
