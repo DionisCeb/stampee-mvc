@@ -1,6 +1,7 @@
 /*general body color*/
 @import url(typography/typography.css);
 @import url(utils/utils.css);
+@import url(error/error.css);
 :root {
     /* --general__body--color: linear-gradient(125deg, #FFFFFF 25%, #1E90FF 50%, #d38365 75%); */
     /* --general__body--color: linear-gradient(125deg, #FFFFFF 25%, hsl(202, 57%, 60%) 50%, #ffd8be 75%, #48cae4 30%); */
