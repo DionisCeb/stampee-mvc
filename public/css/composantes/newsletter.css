@@ -1,0 +1,69 @@
+.newsletter__container {
+  text-align: center;
+  line-height: 1.5rem;
+  padding: 10px;
+  gap: 5px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsletter__cite {
+  max-width: 40ch;
+}
+
+.newsletter__cite + .newsletter__label {
+  margin-top: 20px;
+}
+
+.newsletter__label {
+  width: 40ch;
+}
+
+.newsletter__label + .newsletter__input-btn-box {
+  margin-top: 10px;
+  width: fit-content;
+  border: none;
+}
+
+.newsletter__input-btn-box {
+  display: flex;
+  overflow: hidden;
+  border-radius: 10px;
+  align-items: center;
+}
+
+input#newsletter__inscription {
+  padding: 25px;
+  outline: none;
+  border: none;
+}
+
+/*dionis adjustement*/
+
+@media only screen and (max-width: 440px) {
+  /*the newsletter flex-direction*/
+  .newsletter__input-btn-box{
+    flex-direction: column;
+    gap: 10px;
+  }
+  /*text of newsletter*/
+  .newsletter__label,
+  .newsletter__cite {
+    width: 100%;
+  }
+  input#newsletter__inscription,
+  .newsletter__btn.btn.action {
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  /*Alignement newsletter*/
+  .newsletter__label + .newsletter__input-btn-box {
+    margin: auto;
+  }
+  /*Alignement footer*/
+  .footer__main-content {
+    justify-content: center;
+  }
+}

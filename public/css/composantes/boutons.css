@@ -1,0 +1,129 @@
+:root {
+  --box-extra-info-btn: #9f633a;
+  --btn-primary:#4c6898;
+  --btn-secondary: #9f633a;
+  --gradient-btn-light: linear-gradient(294.72deg, #FF9800 20.05%, #9f633a 79.28%);
+  --gradient-btn-dark: linear-gradient(294.72deg, #1c71f7 20.05%, #3c4553 79.28%);
+  --btn-secondary-hover-bg: rgb(187, 137, 68);
+  --btn-scale: 0.96;
+  --time-transition: all 1s;
+
+}
+.btn {
+  background-color: #4c6898;
+  color: #fafafa;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 20px;
+  text-align: center;
+  color: #fafafa;
+  border: none;
+  transition: var(--time-transition);
+}
+
+.btn:hover {
+  scale: var(--btn-scale);
+}
+
+
+
+/*---> Button-product: <--*/
+.add_to_cart_btn {
+  width: 100%;
+  text-align: center;
+  background: none;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  background: var(--gradient-btn-light);
+}
+
+.add_to_cart_btn:hover {
+  background-color: var(--btn-secondary-hover-bg);
+  color: white;
+}
+
+/*footer buttons*/
+.support_cart_btn {
+  font-size: 20px;
+  transition: background-color 0.6s, transform 0.5s;
+}
+.support_cart_btn:hover {
+  background-color: var(--main-card_slider_color);
+  transform: scale(0.97);
+}
+
+/*the buttons -> extra-info__box*/
+.btn-box {
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  transition: background-color 0.3s, transform 0.4s;
+}
+
+.btn-box:hover {
+  background-color: var(--box-extra-info-btn);
+  transform: scale(0.95);
+}
+.btn-box-active {
+  background-color: var(--box-extra-info-btn);
+  pointer-events: none;
+}
+
+
+/*button newsletter*/
+.newsletter__btn.btn.action {
+  height: 100%;
+}
+
+
+.btn-no-bg{
+    background: none;
+    color: var(--btn-secondary);
+    font-weight: bold;
+    border: 3px solid var(--btn-secondary) !important;
+    border-radius: 10px;
+}
+
+.btn-no-bg:hover {
+  color: white;
+}
+
+
+
+
+/*btn-carousel-main*/
+.bid-now {
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  background: var(--gradient-btn-light);
+  color: white !important;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+
+  /*animations*/
+  transition: background-color 1s;
+  transition: background-color 0.7s, color 0.6s, transform 0.6s, scale 0.8s;
+}
+
+
+.bid-now:hover {
+  background-color: orange;
+  color: rgb(0, 0, 0) !important;
+  transform: scale(0.95) !important;
+}
+
+/*btn testimonial*/
+
+.btn-testimonial {
+  max-width: 300px;
+  padding: 20px;
+  color: white;
+}

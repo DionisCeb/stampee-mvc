@@ -1,0 +1,38 @@
+.catalog-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+
+.pagination-box {
+    display: flex;
+    gap: 5px;
+}
+
+
+.pagination-box-item,
+.arrow-pagination {
+    padding: 15px;
+    border-radius: 15%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.arrow-pagination {
+    background-color: aliceblue;
+}
+
+.pagination-box-item {
+    background-color: white;
+}
+
+/*effects on hover*/
+.pagination-box-item:hover,
+.arrow-pagination:hover {
+    background-color: antiquewhite;
+    scale: 0.97;
+}

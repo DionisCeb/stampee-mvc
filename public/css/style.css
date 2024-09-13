@@ -1,0 +1,78 @@
+/*general*/
+@import url(general/general.css);
+
+@import url(composantes/boutons.css);
+@import url(produit-header.css);
+@import url(box__info-extra.css);
+
+@import url(product__characteristics-section.css);
+@import url(live-bidding-section.css);
+
+
+@import url(composantes/components.css);
+
+/*grid testimonials*/
+@import url(composantes/grille/grille.css);
+
+
+/*sections*/
+@import url(sections/sections.css);
+
+/*utils*/
+@import url(utils/utils.css);
+
+
+
+/*animation*/
+@import url(animations/btn-arrow.css);
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--general__body--color);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+/*structure-> general width*/
+.structure {
+  width: 80%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/*STRUCTURE*/
+@media only screen and (max-width: 1200px) {
+  .structure {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .structure {
+    width: 100%;
+  }
+}
+
+.content {
+  background: var(--general__body--color);
+  display: flex;
+  justify-content: center;
+}

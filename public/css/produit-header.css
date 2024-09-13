@@ -1,0 +1,345 @@
+:root {
+    --gap_big-small-images: 10px;
+}
+/*The structure of the section*/
+section.produit {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    border-radius: 10px;
+    background: var(--transparent-white-bg);
+    padding: 20px;
+}
+
+/*the container of the images*/
+.produit__image-container {
+    display: flex;
+    gap: var(--gap_big-small-images);
+    width: 60%;
+}
+
+
+/*The width of the section*/
+
+/*Section of the images (left)*/
+.produit__image-container {
+    width: 60%;
+}
+
+/*The width of the big image section*/
+.produit__image-container .big-image{
+    width: 70%;
+}
+/*The width of the small image section*/
+.produit__image-container .small-images{
+    width: 30%;
+}
+
+
+
+/*Section of the info (right)*/
+.produit__info {
+    width: 40%;
+}
+
+
+/*img-rules*/
+.big-image img, 
+.small-images img {
+    object-fit: cover;
+    height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+
+.small-images img {
+    opacity: 0.6;
+}
+.small-images img:hover,
+.big-image img:hover {
+    transform: scale(0.98); /* Adjust zoom level as needed */
+}
+
+
+/*small-images*/
+.produit__image-container .small-images {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap_big-small-images);
+}
+
+
+/*!!!!!!!!!!!Info section!!!!!!!!!!!!!*/
+.produit__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*info-content*/
+.info_main >* {
+    margin-bottom: 10px;
+}
+
+.info_main {
+    margin-bottom: 10px;
+}
+
+/*Title*/
+.info__title {
+    font-size: 60px;
+    font-weight: bold;
+    color: #4c6898;
+}
+
+.info__subtitle {
+    font-size: 30px;
+}
+
+/*Price*/
+.info__price {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*old-price*/
+.info__price .price-old {
+    color: rgb(5, 5, 112);
+    text-decoration: line-through;
+}
+
+/*new-price*/
+.info__price .price-new {
+    color: rgb(193 144 0); 
+}
+
+/*info-stock*/
+.info-stock {
+    font-size: 20px;
+}
+
+.info-stock span {
+    color: rgb(5, 5, 112);
+}
+
+/*description*/
+
+.info__description {
+    font-size: 20px;
+    text-align: left;
+}
+
+
+/*footer buttons*/
+.info__footer {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Small buttons*/
+.small-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+
+/*footer-links*/
+.tags-links {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    gap: 5px;
+}
+
+/*buttons-footer*/
+.small-buttons .support_cart_btn {
+    width: 50%;
+}
+
+/*tag-buttons*/
+.tags-links .btn.support_cart_btn.tags {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+/*MediaQuery*/
+
+@media only screen and (min-width: 1540px) {
+    .produit__info {
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 1540px) {
+    .produit__image-container {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /*width of the containers*/
+    .produit__image-container .big-image {
+        width: 100%;
+    }
+    .produit__image-container .small-images {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        overflow: hidden;
+    }
+    .produit__image-container .big-image {
+        width: 100%;
+    }
+
+    .produit__image-container .small-images img {
+        max-width: 33%;
+    }
+
+
+    .produit__image-container .small-images {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        overflow: hidden;
+    }
+    .produit__image-container .big-image {
+        width: 100%;
+    }
+
+    .produit__image-container .big-image {
+        height: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 1500px) {
+    /* .info__description, 
+    .info_main {
+        margin-bottom: 10px;
+    } */
+    .tags-links {
+        gap: 5px;
+    }
+}
+
+
+@media only screen and (max-width: 1300px) {
+    .info__title {
+        font-size: 40px;
+    }
+    .info__description {
+        font-size: 20px;
+    }
+    /*buttons*/
+    .support_cart_btn,
+    .add_to_cart_btn {
+        padding: 10px;
+    }
+    .tags-links .btn.support_cart_btn.tags {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    section.produit {
+        flex-direction: column;   
+    }
+    .produit__image-container, .produit__info {
+        width: 100%;
+    }
+
+    .produit__info {
+        text-align: center;
+    }
+    /*description*/
+    .info__description {
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
+        /* margin: auto; */
+    }
+    /*buttons*/
+    .add_to_cart_btn {
+        width: 80%;
+    }
+    .small-buttons .support_cart_btn {
+        width: 60%;
+    }
+    .info__footer .small-buttons {
+        align-items: center;
+    }
+    /*footer tags*/
+    .tags-links {
+        width: 60%;
+        margin: auto;
+        gap: 5px;
+    }
+}
+
+/*image section wrap*/
+@media only screen and (max-width: 1000px) {
+    .produit__image-container {
+        flex-direction: column;
+    }
+    .produit__image-container .small-images {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        overflow: hidden;
+    }
+    .produit__image-container .big-image {
+        width: 100%;
+    }
+
+    .produit__image-container .small-images img {
+        max-width: 33%;
+    }
+    
+}
+
+
+@media only screen and (max-width: 650px) {
+    /*buttons*/
+    .add_to_cart_btn {
+        font-size: 16px;
+        padding: 10px;
+        width: 100%;
+    }
+    .small-buttons .support_cart_btn {
+        font-size: 14px;
+        padding: 5px;
+    }
+    /*delete the tags*/
+    .tags-links {
+        display: none;
+    }
+
+    /*info_main container*/
+    .produit__info {
+        gap: 20px;
+    }    
+    /*tag-links*/
+    /*support buttons container*/
+    .small-buttons {
+        flex-direction: row;
+    }
+ }
+
+
+ @media only screen and (max-width: 550px) {
+    /*tag-links*/
+    /*support buttons container*/
+    .small-buttons {
+        flex-direction: column;
+    }
+ }
