@@ -34,8 +34,14 @@
                         <a class="link-page" href="{{ base }}/page/actual">Actualité</a>
                     </div>
                 </div>
-                <div class="menu__currency-connection-section">                       
-                    <a class="btn btn-connection" href="">Authentification</a>
+                <div class="menu__currency-connection-section">
+                    {% if  guest %}
+                        <a class="btn btn-connection" href="{{base}}/login">Authentification</a>
+                    {% endif %}                        
+                    {% if guest is empty %}
+                            <p class="greet-user">Bonjour, <span>{{ session.name }}</span></p>
+                            <a class="btn btn-connection" href="{{base}}/login">Déconnexion</a>
+                    {% endif %}
                     <div class="custom-select" style="width:200px;">
                         <select>
                             <option value="">Canada - CAD</option>

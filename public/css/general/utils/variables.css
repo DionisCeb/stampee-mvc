@@ -23,3 +23,28 @@
 .min-height30 {
     min-height: 30vh;
 }
+
+
+.height100 {
+    height: 100dvh;
+}
+.height90 {
+    height: 90dvh;
+}
+.height80 {
+    height: 80dvh;
+}
+.height50 {
+    height: 50dvh;
+}
+.height40 {
+    height: 40dvh;
+}
+.height30 {
+    height: 30dvh;
+}
+
+
+.gap20 {
+    gap: 20px;
+}

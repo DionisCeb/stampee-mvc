@@ -1,10 +1,12 @@
 <?php
 namespace App\Routes;
+use App\Models\User;
+use App\Models\Activity;
 
 class Route {
     private static $routes = [];
 
-    public static function get($url, $controller){ 
+    public static function get($url, $controller){
         self::$routes[] = ['url'=>$url, 'controller' => $controller, 'method' => 'GET'];
     }
 
@@ -17,10 +19,8 @@ class Route {
        $urlSegments = explode('?', $url);; 
        $urlPath = rtrim($urlSegments[0], '/');
        $method = $_SERVER['REQUEST_METHOD'];
-
        foreach(self::$routes as $route){
             if(BASE.$route['url'] == $urlPath && $route['method']== $method){
-
                 $controllerSegments = explode('@',$route['controller']);
                 $controllerName = "App\\Controllers\\".$controllerSegments[0];
 
@@ -30,23 +30,27 @@ class Route {
                 if($method == "GET"){
                     if(isset($urlSegments[1])){
                         parse_str($urlSegments[1], $queryParams);
+                        // print_r($urlSegments);
+                        // echo "<br>";
+                        // print_r($queryParams);
                         $controllerInstance->$methodName($queryParams);
-                    } else {
+                    }else{
                         $controllerInstance->$methodName();
                     }
-                } elseif($method == "POST"){
+                }elseif($method == "POST"){
                     if(isset($urlSegments[1])){
                         parse_str($urlSegments[1], $queryParams);
                         $controllerInstance->$methodName($_POST, $queryParams);
-                    } else {
+                    }else{
                         $controllerInstance->$methodName($_POST);
                     }
                 }
                 return;
             }
        }
-       // Default 404 response
        http_response_code(404);
-       echo '404 Not Found';
+       $controllerName = "App\\Controllers\\ExceptionController";
+       $controllerInstance = new $controllerName();
+       $controllerInstance->show404();
     }
 }
