@@ -10,6 +10,13 @@
                 {% endif %}
             </div>
             <div>
+                <label>Surname</label>
+                <input type="text" name="surname" value="{{ user.surname}}">
+                {% if errors.name is defined %}
+                    <span class="error">{{ errors.name }}</span>
+                {% endif %}
+            </div>
+            <div>
                 <label>Username</label>
                 <input type="email" name="username" value="{{ user.username}}">
                 {% if errors.username is defined %}
@@ -36,7 +43,11 @@
                 <select name="privilege_id">
                         <option value="">Select Privilege</option>
                         {% for privilege in privileges %}
-                        <option value="{{privilege.id}}" {% if privilege.id==user.privilege_id %} selected {% endif %}>{{privilege.privilege}}</option>
+                            {% if privilege.id != 1 or (session.privilege_id == 1) %}
+                                <option value="{{ privilege.id }}" {% if privilege.id == user.privilege_id %} selected {% endif %}>
+                                    {{ privilege.privilege }}
+                                </option>
+                            {% endif %}
                         {% endfor %}
                 </select>
                 {% if errors.privilege_id is defined %}

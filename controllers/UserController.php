@@ -13,7 +13,7 @@ class UserController{
         Auth::session();
     }
     public function create(){
-        if($_SESSION['privilege_id']==1){
+        if($_SESSION['privilege_id']==1 || $_SESSION['privilege_id']==2){
             $privilege = new Privilege;
             $privileges = $privilege->select('privilege');
             View::render('user/create', ['privileges'=>$privileges]);

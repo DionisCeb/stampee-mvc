@@ -16,7 +16,7 @@
     {% endif %}
 </div>
 <div class="contact-us">
-    {% if  guest %}
+    {% if guest %}
         <a class="contact-btn" href="{{base}}/login">Authentification</a>
     {% endif %} 
       
