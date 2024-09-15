@@ -29,7 +29,7 @@
             <nav class="navigation__menu">
                 <div class="menu__page-links">
                     <div class="page-links__box">
-                        <a class="link-page" href="{{ base }}/catalog/auctions">Enchères</a>
+                        <a class="link-page" href="{{ base }}/catalog">Enchères</a>
                         <a class="link-page" href="{{ base }}/page/about">À propos</a>
                         <a class="link-page" href="{{ base }}/page/actual">Actualité</a>
                     </div>

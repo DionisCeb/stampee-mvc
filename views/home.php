@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="bid-now-wrapper">
-                        <a href="{{base}}/stamp/index" class="bid-now">Placer une Mise</a>
+                        <a href="{{base}}/stamp/details?id=1" class="bid-now">Placer une Mise</a>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="bid-now-wrapper">
-                    <a href="{{base}}/stamp/index" class="bid-now">Placer une Mise</a>
+                    <a href="{{base}}/stamp/details?id=2" class="bid-now">Placer une Mise</a>
                 </div>
             </div>
             </div>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div class="bid-now-wrapper">
-                    <a href="{{base}}/stamp/index" class="bid-now">Placer une Mise</a>
+                    <a href="{{base}}/stamp/details?id=3" class="bid-now">Placer une Mise</a>
                 </div>
             </div>
             </div>
@@ -208,7 +208,7 @@
                                     <div class="news__description">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis ipsa nam numquam vero ex odio voluptate illum consequuntur in!
                                     </div>
-                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog/auctions">Voir Plus</a>
+                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog">Voir Plus</a>
                                 </div>
                                     
                                 <div class="card-product">
@@ -222,7 +222,7 @@
                                     <div class="news__description">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis ipsa nam numquam vero ex odio voluptate illum consequuntur in!
                                     </div>
-                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog/auctions">Voir Plus</a>
+                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog">Voir Plus</a>
                                 </div>
                                 <div class="card-product">
                                     <div class="news__img product_card--img">
@@ -234,7 +234,7 @@
                                     <div class="news__description">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis ipsa nam numquam vero ex odio voluptate illum consequuntur in!
                                     </div>
-                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog/auctions">Voir Plus</a>
+                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog">Voir Plus</a>
                                 </div>
                                 <div class="card-product">
                                     <div class="news__img product_card--img">
@@ -246,7 +246,7 @@
                                     <div class="news__description">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis ipsa nam numquam vero ex odio voluptate illum consequuntur in!
                                     </div>
-                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog/auctions">Voir Plus</a>
+                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog">Voir Plus</a>
                                 </div>
                                 <div class="card-product">
                                     <div class="news__img product_card--img">
@@ -257,7 +257,7 @@
                                     <div class="news__description">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis ipsa nam numquam vero ex odio voluptate illum consequuntur in!
                                     </div>
-                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog/auctions">Voir Plus</a>
+                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog">Voir Plus</a>
                                 </div>
                                 <div class="card-product">
                                     <div class="news__img product_card--img">
@@ -268,7 +268,7 @@
                                     <div class="news__description">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis ipsa nam numquam vero ex odio voluptate illum consequuntur in!
                                     </div>
-                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog/auctions">Voir Plus</a>
+                                    <a class="btn add_to_cart_btn card-slider-btn" href="{{ base }}/catalog">Voir Plus</a>
                                 </div>
 
                                 

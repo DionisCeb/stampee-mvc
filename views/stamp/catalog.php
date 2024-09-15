@@ -73,7 +73,7 @@
 
             <section class="catalog__auctions--section">
                 <div class="grid-container">
-                    <div class="card__news card_catalog" style="animation-delay: 0.3s;">
+                    <!-- <div class="card__news card_catalog" style="animation-delay: 0.3s;">
                         <div class="news__img">
                             <img src="{{ asset }}img/timbres/produits/small-img_4.jpg" alt="Découverte d'un Timbre Rare">
                         </div>
@@ -118,9 +118,66 @@
                         </div>
                         </div>
                         <div class="news__read--more">
-                        <a href="produit.html" class="bid-now news-btn">Placer une mise <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
+                            <a href="{{ base }}/stamp/index" class="bid-now news-btn">Placer une mise <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
                         </div>
-                    </div>
+                    </div> -->
+                    {% for stamp in stamps %}
+                        <div class="card__news card_catalog" style="animation-delay: 0.3s;">
+                            <div class="news__img">
+                                <img src="{{ asset }}img/timbres/produits/small-img_4.jpg" alt="{{ stamp.name }}">
+                            </div>
+                            <div class="news__title">
+                                <h1>{{ stamp.name }}</h1>
+                            </div>
+                            <div class="news__details">
+                                <p>Date de création: {{ stamp.creation_date }}</p>
+                                <p>Couleur(s): {{ stamp.colors }}</p>
+                                <p>Pays d’origine: {{ stamp.country_of_origin }}</p>
+                                <p>Condition: {{ stamp.stamp_condition }}</p>
+                                <p>Tirage: {{ stamp.print_run }}</p>
+                                <p>Dimensions: {{ stamp.dimensions }}</p>
+                                <p>Certifié: {{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</p>
+                            </div>
+                            <div class="timer" style="justify-content: center;">
+                                <div>
+                                    <div class="time">
+                                        <span>Jours:</span>
+                                    </div>
+                                    <div class="result">
+                                        <span class="days">02</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="time">
+                                        <span>Heures:</span>
+                                    </div>
+                                    <div class="result">
+                                        <span class="hours">10</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="time">
+                                        <span>Minutes:</span>
+                                    </div>
+                                    <div class="result">
+                                        <span class="minutes">02</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="time">
+                                        <span>Secondes:</span>
+                                    </div>
+                                    <div class="result">
+                                        <span class="seconds">32</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news__read--more">
+                                <a href="{{ base }}/stamp/details?id={{ stamp.id }}" class="bid-now news-btn">Placer une mise <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
                 </div>
 
                 <!-----Pagination----->
