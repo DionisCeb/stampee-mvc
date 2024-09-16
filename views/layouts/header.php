@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset}}css/style.css">
     {% if scripts is not empty %}
         {% for js in scripts %}
+            <script src="{{asset}}js/navigation.js" defer></script>
             <script src="{{asset}}js/{{js}}" defer></script>
         {% endfor %}
     {% endif %}  
@@ -39,7 +40,15 @@
                         <a class="btn btn-connection" href="{{base}}/login">Authentification</a>
                     {% endif %}                        
                     {% if guest is empty %}
-                            <p class="greet-user">Bonjour, <span>{{ session.name }}</span></p>
+                            <div class="greet-user">
+                                <p class="greet-user-text">Bonjour, <span>{{ session.name }}</span></p>
+                                <a href="{{ base }}/user/edit">
+                                    <div class="greet-user-img">
+                                        <img src="{{ asset }}img/profile/profile1.webp" alt="image of {{session.name}}">
+                                    </div>
+                                </a>
+                            </div>
+                            
                             <a class="btn btn-connection" href="{{base}}/login">Déconnexion</a>
                     {% endif %}
                     <div class="custom-select" style="width:200px;">
@@ -53,7 +62,7 @@
                 </div>
             </nav>
             <div class="toggle_btn">
-                <img src="assets/img/icons/nav/nav_bar.png" alt="nav_bar">
+                <img src="{{asset}}/img/icons/nav/nav_bar.png" alt="nav_bar">
             </div>
 
             <div class="dropdown_menu">

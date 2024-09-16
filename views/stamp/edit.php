@@ -1,6 +1,6 @@
 {{ include('layouts/header.php', {title:'Edit your Stamp'})}}
 
-<div class="create-stamp-container">
+<div class="create-form-container">
     <h1>Edit Stamp</h1>
     
     <form action="{{ base }}/stamp/edit" method="post" enctype="multipart/form-data">

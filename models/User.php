@@ -37,4 +37,13 @@ class User extends CRUD{
 
     }
 
+    public function findOne($id) {
+        $sql = "SELECT * FROM $this->table WHERE $this->primaryKey = :id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+    
+
 }

@@ -27,6 +27,9 @@
 @import url(animations/btn-arrow.css);
 
 
+@import url(management/management.css);
+
+
 * {
   box-sizing: border-box;
   margin: 0;

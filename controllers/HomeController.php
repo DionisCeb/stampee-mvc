@@ -8,6 +8,7 @@ class HomeController{
         
         View::render('home', ['scripts'=> [
             'carousel.js',
+            'timer.js'
         ]]);
     }
 

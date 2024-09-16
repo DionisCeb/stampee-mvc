@@ -1,7 +1,7 @@
 {{ include('layouts/header.php', {title:'Create your Stamp'})}}
 
 
-<div class="create-stamp-container">
+<div class="create-form-container">
     <h1>Create New Stamp</h1>
     
     <form action="{{ base }}/stamp/create" method="post" class="create-stamp-form">

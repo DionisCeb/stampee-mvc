@@ -34,6 +34,13 @@
 .height80 {
     height: 80dvh;
 }
+.height70 {
+    height: 70dvh;
+}
+.height60 {
+    height: 60dvh;
+}
+
 .height50 {
     height: 50dvh;
 }
@@ -47,4 +54,16 @@
 
 .gap20 {
     gap: 20px;
+}
+.gap30 {
+    gap: 30px;
+}
+.gap40 {
+    gap: 50px;
+}
+.gap50 {
+    gap: 50px;
+}
+.gap60 {
+    gap: 60px;
 }

@@ -14,6 +14,9 @@ Route::post('/login', 'AuthController@store');
 /* USER CREATE */
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
+/* USER EDIT */
+Route::get('/user/edit', 'UserController@edit');
+Route::post('/user/edit', 'UserController@update');
 
 /* product / stamp (specific wtih index) */
 Route::get('/stamp/details', 'StampController@details');

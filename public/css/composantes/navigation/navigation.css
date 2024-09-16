@@ -94,6 +94,25 @@
     box-shadow: var(--btn-shadow);
   }
 
+  /*greet user*/
+  .greet-user {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+  }
+
+  .greet-user-img {
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    cursor: pointer;
+  }
+  .greet-user-img img{
+    border-radius: 50%;
+  }
+
 /*currency dropdown*/
 /*the container must be positioned relative:*/
     .custom-select {

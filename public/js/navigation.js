@@ -10,7 +10,7 @@ toggleBtn.onclick = function () {
   
     // Update image sources to reflect menu state
     toggleBtnImgs.forEach((img) => {
-      img.src = "./assets/img/icons/nav/close.svg";
+      img.src = "{{asset}}img/icons/nav/close.svg";
     });
   };
   
@@ -23,7 +23,7 @@ toggleBtn.onclick = function () {
   
     // Update image sources to reflect menu state
     toggleBtnImgs.forEach((img) => {
-      img.src = "./assets/img/icons/nav/nav_bar.svg";
+      img.src = "{{asset}}img/icons/nav/nav_bar.svg";
     });
   }
   
@@ -44,13 +44,13 @@ toggleBtn.onclick = function () {
       dropDownMenu.classList.remove("close");
   
       toggleBtnImgs.forEach((img) => {
-        img.src = "./assets/img/icons/nav/close.svg";
+        img.src = "{{asset}}img/icons/nav/close.svg";
       });
     }
   };
 
   /*Auth pop-up*/
-  document.addEventListener('DOMContentLoaded', function() {
+ /*  document.addEventListener('DOMContentLoaded', function() {
     const btnConnection = document.querySelector('.btn-connection');
 
     // Function to create and show the popup
@@ -109,7 +109,7 @@ toggleBtn.onclick = function () {
         event.preventDefault();
         showPopup();
     });
-});
+}); */
 
 
   /** Custom Dropdown Implementation */
