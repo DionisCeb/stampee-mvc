@@ -124,7 +124,11 @@
                     {% for stamp in stamps %}
                         <div class="card__news card_catalog" style="animation-delay: 0.3s;">
                             <div class="news__img">
-                                <img src="{{ asset }}img/timbres/produits/small-img_4.jpg" alt="{{ stamp.name }}">
+                                {% if stamp.images is not empty %}
+                                    <img src="{{ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
+                                {% else %}
+                                    <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
+                                {% endif %}
                             </div>
                             <div class="news__title">
                                 <h1>{{ stamp.name }}</h1>

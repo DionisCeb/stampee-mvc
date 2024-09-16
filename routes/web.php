@@ -17,7 +17,17 @@ Route::post('/user/create', 'UserController@store');
 
 /* product / stamp (specific wtih index) */
 Route::get('/stamp/details', 'StampController@details');
+Route::get('/stamp/create', 'StampController@create');
+Route::post('/stamp/create', 'StampController@store');
+
+/**
+ * Stamp edit
+ */
+Route::get('/stamp/edit', 'StampController@edit');
+Route::post('/stamp/edit', 'StampController@update');
+
 Route::get('/catalog', 'StampController@list');
+
 
 
 /*les pages*/

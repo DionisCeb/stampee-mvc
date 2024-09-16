@@ -7,7 +7,7 @@
   --btn-secondary-hover-bg: rgb(187, 137, 68);
   --btn-scale: 0.96;
   --time-transition: all 1s;
-
+  --btn-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .btn {
   background-color: #4c6898;

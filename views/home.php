@@ -285,14 +285,11 @@
     <section class="how-it-works">
         <div class="structure">
 
-            
             <header class="header__title--with_line">
                 <h2>Comment ça marche?</h2>
                 <div class="line"></div>
             </header>
-
             <div class="how-it-works__container min-height70">
-                
                 <div class="how-it-works__block">
                     <div class="block__icon">
                         <img src="{{ asset }}img/icons/how-it-works/registration.png" alt="registration-icon">

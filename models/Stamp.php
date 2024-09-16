@@ -62,9 +62,31 @@ class Stamp extends CRUD {
         
         // Récupérer les détails du timbre
         $stamp = $stmt->fetch(\PDO::FETCH_ASSOC);
-        
+
+        if ($stamp) {
+            // Requête SQL pour récupérer les images associées
+            $sqlImages = "SELECT image_path, is_main FROM stamp_images WHERE stamp_id = :id ORDER BY image_order";
+            $stmtImages = $this->prepare($sqlImages);
+            $stmtImages->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmtImages->execute();
+
+             // Récupérer les images associées
+             $images = $stmtImages->fetchAll(\PDO::FETCH_ASSOC);
+             $stamp['images'] = $images;
+        }    
         return $stamp;
     }
+
+    public function getDistinctConditions() {
+        // SQL query to select distinct stamp_condition values
+        $sql = "SELECT DISTINCT stamp_condition FROM " . $this->table;
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(\PDO::FETCH_COLUMN); // Fetch only the distinct condition values
+    }
+
+
 }
 
 

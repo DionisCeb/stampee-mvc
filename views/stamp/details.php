@@ -5,12 +5,14 @@
                 <section class="produit">
                     <div class="produit__image-container">
                         <div class="big-image">
-                            <img src="{{ asset }}img/timbres/produits/big-img.jpg" alt="big-image-stamp" id="bigImg">
+                            <img src="{{ stamp.images[0].image_path }}" alt="Main Image" id="bigImg">
                         </div>
                         <div class="small-images">
-                            <img src="{{ asset }}img/timbres/produits/small-img_1.jpg" alt="small-image_1">
-                            <img src="{{ asset }}img/timbres/produits/small-img_2.jpg" alt="small-image_2">
-                            <img src="{{ asset }}img/timbres/produits/small-img_3.png" alt="small-image_3">
+                        {% for image in stamp.images %}
+                            {% if not image.is_main %}
+                                <img src="{{ image.image_path }}" alt="Additional Image">
+                            {% endif %}
+                        {% endfor %}
                         </div>
                     </div>
                     <div class="produit__info">
@@ -24,7 +26,7 @@
                                 <div class="list_box">
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Date de creation :</span> <span class="item-desc">{{ stamp.creation_date }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Condition :</span> <span class="item-desc">{{ stamp.stamp_condition }}</span></div>
-                                    <div class="list-item" style="padding: 10px;"><span class="item-title">Pays d’origine :</span> <span class="item-desc">Australie</span></div>
+                                    <div class="list-item" style="padding: 10px;"><span class="item-title">Pays d’origine :</span> <span class="item-desc">{{ stamp.country }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Dimensions :</span> <span class="item-desc">{{ stamp.dimensions }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Tirage :</span> <span class="item-desc">{{ stamp.print_run }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Certifié :</span> <span class="item-desc">{{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</span></div>
