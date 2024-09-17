@@ -105,6 +105,20 @@ abstract class CRUD extends \PDO{
         }
     }
 
+    public function findAll() {
+        $sql = "SELECT * FROM $this->table";  // Query to select all records from the table
+        $stmt = $this->prepare($sql);         // Prepare the SQL statement
+        $stmt->execute();                     // Execute the statement
+        $count = $stmt->rowCount();           // Get the number of rows returned
+    
+        if ($count > 0) {
+            return $stmt->fetchAll();         // Fetch and return all the results
+        } else {
+            return false;                     // Return false if no records found
+        }
+    }
+    
+
 }
 
 ?>

@@ -21,6 +21,8 @@
                             <p class="info__description">
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus vitae, et, deserunt necessitatibus, atque natus impedit earum neque itaque voluptatem perspiciatis eligendi qui? Obcaecati, incidunt?
                             </p>
+                            <p>Auteur: {{ stamp.user_name }}</p>
+                            
                             <h2 class="container__title">Caractéristiques</h2>
                             <div class="container__lists">
                                 <div class="list_box">

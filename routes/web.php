@@ -18,6 +18,10 @@ Route::post('/user/create', 'UserController@store');
 Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/edit', 'UserController@update');
 
+/*user collection*/
+Route::get('/user/collection', 'StampController@collection');
+
+
 /* product / stamp (specific wtih index) */
 Route::get('/stamp/details', 'StampController@details');
 Route::get('/stamp/create', 'StampController@create');

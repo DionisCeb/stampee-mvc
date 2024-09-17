@@ -22,7 +22,7 @@ class AuthController{
             $checkuser = $user->checkuser($data['username'],$data['password']);
 
             if($checkuser){
-                return View::redirect('catalog/auctions');
+                return View::redirect('catalog');
             }else{
                 $errors['message'] = "Please check your credentials";
                 return View::render('auth/index', ['errors'=>$errors, 'user'=>$data]);

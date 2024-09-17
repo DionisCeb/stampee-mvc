@@ -2,6 +2,8 @@
 namespace App\Models;
 
 use App\Models\DB\CRUD;
+use App\Models\User;
+
 
 class Stamp extends CRUD {
 
@@ -20,7 +22,8 @@ class Stamp extends CRUD {
         'condition', 
         'print_run', 
         'dimensions', 
-        'certified'
+        'certified',
+        'user_id'
     ];
 
     /**
@@ -86,7 +89,16 @@ class Stamp extends CRUD {
         return $stmt->fetchAll(\PDO::FETCH_COLUMN); // Fetch only the distinct condition values
     }
 
-
+    /**
+     * Retrieve the stamp created by a specific user
+     */
+    public function findByUserId($userId) {
+        $sql = "SELECT * FROM $this->table WHERE user_id = :user_id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 

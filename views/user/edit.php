@@ -4,6 +4,11 @@
 
 <section class="flex-center-center min-height70">
         <div class="structure flex gap20">
+            <div class="profile-links">
+                <a href="{{ base }}/user/collection" class="bid-now news-btn">Voir ma collection
+                    <i class="arrow-right"><img src="{{ asset }}img/icons/gallery/gallery.png" alt="arrow-back"></i>
+                </a>
+            </div>
             <div class="profile-section">
                 <div class="profile-image">
                     <img src="{{ asset }}img/profile/profile1.webp" alt="Profile Image of {{ user.name }}" id="profileImage">

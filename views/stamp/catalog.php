@@ -141,6 +141,7 @@
                                 <p>Tirage: {{ stamp.print_run }}</p>
                                 <p>Dimensions: {{ stamp.dimensions }}</p>
                                 <p>Certifié: {{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</p>
+                                <p>Auteur: {{ stamp.user_name }}</p>
                             </div>
                             <div class="timer" style="justify-content: center;">
                                 <div>
