@@ -1,5 +1,5 @@
 {{ include('layouts/header.php', {title:'Create User'})}}
-    <section class="flex-center-column gap20 height50">
+    <section class="flex-center-column gap20 height70">
         <form class="form-auth" method="post">
             <h2>New User</h2>
             <div>

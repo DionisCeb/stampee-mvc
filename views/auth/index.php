@@ -1,5 +1,5 @@
 {{ include('layouts/header.php', {title:'Login'})}}
-        <section class="flex-center-center height50">
+        <section class="flex-center-column height50">
                 <form class="form-auth" method="post">
                     <h2>Login</h2>
                     <div>
@@ -20,5 +20,9 @@
                         <input type="submit" value="Login">
                     </div>
                 </form>
+                <div class="redirect-register">
+                    <p>Are you not a member? <a href="{{ base }}/user/create">click here to register</a></p>
+                </div>
         </section>
+        
 {{ include('layouts/footer.php')}}
