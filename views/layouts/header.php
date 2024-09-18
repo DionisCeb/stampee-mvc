@@ -49,7 +49,7 @@
                                 </a>
                             </div>
                             
-                            <a class="btn btn-connection" href="{{base}}/login">Déconnexion</a>
+                            <a class="btn btn-connection" href="{{base}}/logout">Déconnexion</a>
                     {% endif %}
                     <div class="custom-select" style="width:200px;">
                         <select>

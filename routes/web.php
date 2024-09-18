@@ -18,6 +18,9 @@ Route::post('/user/create', 'UserController@store');
 Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/edit', 'UserController@update');
 
+/*logout*/
+Route::get('/logout', 'AuthController@delete');
+
 /*user collection*/
 Route::get('/user/collection', 'StampController@collection');
 
@@ -54,6 +57,5 @@ Route::post('/user/create', 'UserController@store');
 
 
 
-/*logout*/
-Route::get('/logout', 'AuthController@delete');
+
 ?>

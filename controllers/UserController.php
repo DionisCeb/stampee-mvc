@@ -9,47 +9,50 @@ use App\Providers\Auth;
 
 class UserController{
 
-    public function __construct(){
+    /* public function __construct(){
         Auth::session();
+    } */
+    public function create() {
+        // Allow access to the create page for all users including guests
+        $privilege = new Privilege;
+        $privileges = $privilege->select('privilege');
+    
+        // Render the create view with privileges
+        View::render('user/create', ['privileges' => $privileges]);
     }
-    public function create(){
-        if($_SESSION['privilege_id']==1 || $_SESSION['privilege_id']==2){
-            $privilege = new Privilege;
-            $privileges = $privilege->select('privilege');
-            View::render('user/create', ['privileges'=>$privileges]);
-        }else{
-            return View::redirect('login');
-        }
+    
+    
+
+   public function store($data) {
+    // Ensure authentication before proceeding with storing user data
+    Auth::session();
+
+    // Validate the incoming data
+    $validator = new Validator;
+    $validator->field('name', $data['name'])->min(2)->max(50);
+    $validator->field('username', $data['username'])->email()->required()->max(50)->isUnique('User');
+    $validator->field('password', $data['password'])->min(5)->max(20);
+    $validator->field('email', $data['email'])->email()->required()->max(50)->isUnique('User');
+    $validator->field('privilege_id', $data['privilege_id'], 'privilege')->required()->isExist('Privilege');
+
+    if ($validator->isSuccess()) {
+        $user = new User;
+        $data['password'] = $user->hashPassword($data['password']);
+        $insert = $user->insert($data);
         
-    }
-
-    public function store($data){
-        Auth::session();
-        $validator = new Validator;
-        $validator->field('name', $data['name'])->min(2)->max(50);
-        $validator->field('username', $data['username'])->email()->required()->max(50)->isUnique('User');
-        $validator->field('password', $data['password'])->min(5)->max(20);
-        $validator->field('email', $data['email'])->email()->required()->max(50)->isUnique('User');
-        $validator->field('privilege_id', $data['privilege_id'], 'privilege')->required()->isExist('Privilege');
-
-        if($validator->isSuccess()){
-            $user = new User;
-            $data['password'] = $user->hashPassword($data['password']);
-            $insert = $user->insert($data);
-            if($insert){
-                return View::redirect('login');
-            }else{
-                return View::render('error');
-            }
-        }else{
-            $errors = $validator->getErrors();
-            //print_r($data);
-            //print_r($errors);
-            $privilege = new Privilege;
-            $privileges = $privilege->select('privilege');
-            return View::render('user/create', ['errors'=>$errors, 'user'=>$data, 'privileges'=>$privileges]);
+        if ($insert) {
+            return View::redirect('login');
+        } else {
+            return View::render('error');
         }
+    } else {
+        $errors = $validator->getErrors();
+        $privilege = new Privilege;
+        $privileges = $privilege->select('privilege');
+        return View::render('user/create', ['errors' => $errors, 'user' => $data, 'privileges' => $privileges]);
     }
+}
+
 
     public function edit() {
         if ($_SESSION['privilege_id'] == 1 || $_SESSION['privilege_id'] == 2) {
