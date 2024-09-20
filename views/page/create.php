@@ -1,0 +1,1 @@
+Here would be auction create

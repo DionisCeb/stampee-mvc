@@ -24,6 +24,7 @@
                             <p>Auteur: {{ stamp.user_name }}</p>
                             
                             <h2 class="container__title">Caractéristiques</h2>
+                            
                             <div class="container__lists">
                                 <div class="list_box">
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Date de creation :</span> <span class="item-desc">{{ stamp.creation_date }}</span></div>
@@ -34,14 +35,9 @@
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Certifié :</span> <span class="item-desc">{{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</span></div>
                                 </div>
                             </div>
-                            <p class="info__price">
-                                <span class="price-old">$1000</span>
-                                <span class="price-new">$899.00</span>
-                            </p>
-                            <p class="info-stock">
-                                 Il reste <span>2 en stock</span>
-                            </p>
-                            <div class="timer" style="justify-content: center;">
+                            
+                            {% if stamp.auction %}
+                            <!-- <div class="timer" style="justify-content: center;">
                                 <div>
                                     <div class="time">
                                         <span>Jours:</span>
@@ -74,10 +70,22 @@
                                         <span class="seconds">32</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            <p>Date de début de l'enchère: {{ stamp.auction.start_date }}</p>
+                            <p>Date de fin de l'enchère: {{ stamp.auction.end_date }}</p>
+
+                            <p class="info__price">
+                                Prix de départ:
+                                <span class="price-new">${{ stamp.auction.starting_price }}</span>
+                            </p>
                             <button class="btn add_to_cart_btn">
                                 Placez votre mise
                             </button>
+                            {% else %}
+                                <p>Cette timbre n'est pas aux enchères actuellement.</p>
+                            {% endif %}
+                        </div>
+                        
                 </section>
                 <!----The box--->
                 <section class="product__extra-info">

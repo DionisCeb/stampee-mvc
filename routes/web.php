@@ -7,10 +7,10 @@ Route::get('', 'HomeController@index');
 
 
 
-
 /* login page */
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@store');
+
 /* USER CREATE */
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
@@ -23,6 +23,7 @@ Route::get('/logout', 'AuthController@delete');
 
 /*user collection*/
 Route::get('/user/collection', 'StampController@collection');
+
 
 
 /* product / stamp (specific wtih index) */
@@ -43,6 +44,8 @@ Route::get('/catalog', 'StampController@list');
 /*les pages*/
 Route::get('/page/actual', 'PagesController@actual');
 Route::get('/page/about', 'PagesController@about');
+Route::get('/page/create', 'AuctionController@create');
+
 Route::dispatch();
 
 
@@ -50,8 +53,6 @@ Route::dispatch();
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
 
-/*login*/
-/* Route::get('/auth/index', 'AuthController@index'); */
 
 
 

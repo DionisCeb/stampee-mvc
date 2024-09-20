@@ -12,6 +12,12 @@ class PagesController {
         ]]);
     }
 
+    public function create() {
+        View::render('page/create', ['scripts'=> [
+            'active-link.js'
+        ]]);
+    }
+
     public function about() {
         View::render('page/about', ['scripts'=> [
             'active-link.js'

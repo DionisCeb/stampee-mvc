@@ -8,7 +8,7 @@ class Auction extends CRUD {
     protected $table = 'auctions';
 
     public function findByStampId($stampId) {
-        $sql = "SELECT * FROM " . $this->table . " WHERE stamp_id = :stamp_id AND start_date <= CURDATE() AND end_date >= CURDATE()";
+        $sql = "SELECT * FROM " . $this->table . " WHERE stamp_id = :stamp_id";
         $stmt = $this->prepare($sql);
         $stmt->bindParam(':stamp_id', $stampId);
         $stmt->execute();
