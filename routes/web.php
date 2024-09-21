@@ -34,8 +34,9 @@ Route::post('/stamp/create', 'StampController@store');
 /**
  * Stamp edit
  */
-Route::get('/stamp/edit', 'StampController@edit');
-Route::post('/stamp/edit', 'StampController@update');
+Route::get('/auction/edit', 'AuctionController@edit');
+Route::post('/auction/update', 'AuctionController@update');
+
 
 Route::get('/catalog', 'StampController@list');
 
@@ -44,14 +45,19 @@ Route::get('/catalog', 'StampController@list');
 /*les pages*/
 Route::get('/page/actual', 'PagesController@actual');
 Route::get('/page/about', 'PagesController@about');
-Route::get('/auction/create', 'AuctionController@create');
+
+Route::get('/auctioning/create', 'AuctionController@create');
+Route::post('/auctioning/store', 'AuctionController@store');
+
 
 Route::dispatch();
 
 
 /* USER CREATE */
-Route::get('/user/create', 'UserController@create');
-Route::post('/user/create', 'UserController@store');
+/* Route::get('/user/create', 'UserController@create');
+Route::post('/user/create', 'UserController@store'); */
+
+
 
 
 

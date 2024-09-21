@@ -17,4 +17,10 @@ class PagesController {
             'active-link.js'
         ]]);
     }
+
+    public function create() {
+        View::render('page/create', ['scripts'=> [
+            'active-link.js'
+        ]]);
+    }
 }
