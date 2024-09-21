@@ -44,7 +44,7 @@ Route::get('/catalog', 'StampController@list');
 /*les pages*/
 Route::get('/page/actual', 'PagesController@actual');
 Route::get('/page/about', 'PagesController@about');
-Route::get('/page/create', 'AuctionController@create');
+Route::get('/auction/create', 'AuctionController@create');
 
 Route::dispatch();
 

@@ -8,7 +8,7 @@ use App\Providers\View;
 class AuctionController {
 
     public function create() {
-        View::render('page/create', ['scripts'=> [
+        View::render('auction/create', ['scripts'=> [
             'active-link.js'
         ]]);
     }
