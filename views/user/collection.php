@@ -97,42 +97,9 @@
                                     <p>Dimensions: {{ stamp.dimensions }}</p>
                                     <p>Certifié: {{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</p>
                                 </div>
-                                <div class="timer" style="justify-content: center;">
-                                    <div>
-                                        <div class="time">
-                                            <span>Jours:</span>
-                                        </div>
-                                        <div class="result">
-                                            <span class="days">02</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="time">
-                                            <span>Heures:</span>
-                                        </div>
-                                        <div class="result">
-                                            <span class="hours">10</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="time">
-                                            <span>Minutes:</span>
-                                        </div>
-                                        <div class="result">
-                                            <span class="minutes">02</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="time">
-                                            <span>Secondes:</span>
-                                        </div>
-                                        <div class="result">
-                                            <span class="seconds">32</span>
-                                        </div>
-                                    </div>
-                                </div>
+                
                                 <div class="news__read--more">
-                                    <a href="{{ base }}/stamp/details?id={{ stamp.id }}" class="bid-now news-btn">Voir le timbre <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
+                                    <a href="{{ base }}/auctioning/create?id={{ stamp.id }}" class="bid-now news-btn">Créer une enchère<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
                                 </div>
                             </div>
                         {% endfor %}  

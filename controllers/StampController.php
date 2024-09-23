@@ -7,6 +7,7 @@ use App\Models\StampImage;
 use App\Models\User;
 use App\Providers\Auth;
 use App\Models\Privilege;
+use App\Models\Auction;
 
 class StampController{
 
@@ -204,25 +205,32 @@ class StampController{
         $stampId = intval($_GET['id']);
         $stampModel = new Stamp;
         $userModel = new User;
+        $auctionModel = new Auction;
+        
         $stamp = $stampModel->findOne($stampId);
         
         if (!$stamp) {
             return View::redirect('catalog'); // Redirect if the stamp is not found
         }
-
-        //Fetch the user who created the stamp
+    
+        // Fetch the user who created the stamp
         $user = $userModel->findOne($stamp['user_id']);
-        if ($user) {
-            $stamp['user_name'] = $user['name'];
+        $stamp['user_name'] = $user ? $user['name'] : 'Unknown';
+    
+        // Fetch auction details for the stamp
+        $auction = $auctionModel->findByStampId($stampId);
+        if ($auction) {
+            $stamp['auction'] = $auction;
         } else {
-            $stamp['user_name'] = 'Unknown';
+            $stamp['auction'] = null;  // No auction for this stamp
         }
-        
+    
         View::render('stamp/details', [
-            'scripts' => ['product-card-slider.js'],
+            'scripts' => ['product-card-slider.js', 'timer.js'],  // Add timer script here
             'stamp' => $stamp
         ]);
     }
+    
     
 
     /**
