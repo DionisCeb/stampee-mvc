@@ -4,7 +4,7 @@
 <div class="create-form-container">
     <h1>Create New Stamp</h1>
     
-    <form action="{{ base }}/stamp/create" method="post" class="create-stamp-form">
+    <form action="{{ base }}/stamp/create" method="post" class="create-stamp-form" enctype="multipart/form-data">
         <!-- Stamp Name -->
         <div class="form-group">
             <label for="stampName">Stamp Name</label>
@@ -61,24 +61,24 @@
 
         <!-- Main Image URL -->
         <div class="form-group">
-            <label for="mainImage">Main Image URL</label>
-            <input type="text" id="mainImage" name="image_path[main]" placeholder="https://example.com/main-image.jpg" required>
+            <label for="mainImage">Main Image</label>
+            <input type="file" id="mainImage" name="image_path[main]" accept="image/*" required>
         </div>
 
         <!-- Additional Image URLs -->
         <div class="form-group">
-            <label for="additionalImage1">Additional Image URL 1</label>
-            <input type="text" id="additionalImage1" name="image_path[additional][]" placeholder="https://example.com/additional-image1.jpg">
+            <label for="additionalImage1">Additional Image 1</label>
+            <input type="file" id="additionalImage1" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="form-group">
-            <label for="additionalImage2">Additional Image URL 2</label>
-            <input type="text" id="additionalImage2" name="image_path[additional][]" placeholder="https://example.com/additional-image2.jpg">
+            <label for="additionalImage2">Additional Image 2</label>
+            <input type="file" id="additionalImage2" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="form-group">
-            <label for="additionalImage3">Additional Image URL 3</label>
-            <input type="text" id="additionalImage3" name="image_path[additional][]" placeholder="https://example.com/additional-image3.jpg">
+            <label for="additionalImage3">Additional Image 3</label>
+            <input type="file" id="additionalImage3" name="image_path[additional][]" accept="image/*">
         </div>
 
         <!-- Submit Button -->

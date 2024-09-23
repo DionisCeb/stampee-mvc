@@ -5,16 +5,17 @@
                 <section class="produit">
                     <div class="produit__image-container">
                         <div class="big-image">
-                            <img src="{{ stamp.images[0].image_path }}" alt="Main Image" id="bigImg">
+                            <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="Main Image" id="bigImg">
                         </div>
                         <div class="small-images">
-                        {% for image in stamp.images %}
-                            {% if not image.is_main %}
-                                <img src="{{ image.image_path }}" alt="Additional Image">
-                            {% endif %}
-                        {% endfor %}
+                            {% for image in stamp.images %}
+                                {% if not image.is_main %}
+                                    <img src="{{ base ~ '/' ~ image.image_path }}" alt="Additional Image">
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
+
                     <div class="produit__info">
                         <div class="info_main">
                             <h1 class="info__title">{{ stamp.name }}</h1>

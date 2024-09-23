@@ -51,41 +51,48 @@ class StampController{
         $stampId = $stamp->insert($data);  // Insert stamp data and get the stamp ID
     
         if ($stampId) {
-            // Handle images
-            $imagePaths = $_POST['image_path'];
+            // Handle images using the uploadFile method
             $stampImage = new StampImage();
     
-            // Insert the main image
-            if (!empty($imagePaths['main'])) {
-                $stampImage->insert([
-                    'stamp_id' => $stampId,
-                    'image_path' => $imagePaths['main'],
-                    'is_main' => 1,
-                    'image_order' => 1
-                ]);
-            }
-    
-            // Insert additional images
-            if (!empty($imagePaths['additional'])) {
-                foreach ($imagePaths['additional'] as $index => $additionalImagePath) {
-                    if (!empty($additionalImagePath)) {
-                        $stampImage->insert([
-                            'stamp_id' => $stampId,
-                            'image_path' => $additionalImagePath,
-                            'is_main' => 0,
-                            'image_order' => $index + 2  // Main image is 1, so additional images start from 2
-                        ]);
-                    }
+            // Upload and insert the main image
+            if (!empty($_FILES['image_path']['name']['main'])) {
+                $uploadedMainImagePath = $stampImage->uploadFile($_FILES['image_path']['tmp_name']['main'], $_FILES['image_path']['name']['main']);
+                if ($uploadedMainImagePath) {
+                    $stampImage->insertImage([
+                        'stamp_id' => $stampId,
+                        'image_path' => $uploadedMainImagePath,
+                        'is_main' => 1,
+                        'image_order' => 1
+                    ]);
                 }
             }
     
+            // Upload and insert additional images
+            if (!empty($_FILES['image_path']['name']['additional'])) {
+                foreach ($_FILES['image_path']['name']['additional'] as $index => $additionalImageName) {
+                    if (!empty($additionalImageName)) {
+                        $uploadedAdditionalImagePath = $stampImage->uploadFile($_FILES['image_path']['tmp_name']['additional'][$index], $additionalImageName);
+                        if ($uploadedAdditionalImagePath) {
+                            $stampImage->insertImage([
+                                'stamp_id' => $stampId,
+                                'image_path' => $uploadedAdditionalImagePath,
+                                'is_main' => 0,
+                                'image_order' => $index + 2 // Main image is 1, so additional images start from 2
+                            ]);
+                        }
+                    }
+                }
+            }
             // Redirect to the catalog page if successful
             return View::redirect('catalog');
         } else {
             // Render an error page if insertion fails
+            error_log("Failed to insert stamp data into the database.");
             return View::render('error');
         }
     }
+    
+    
     
 
     public function list() {
