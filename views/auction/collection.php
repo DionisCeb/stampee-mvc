@@ -76,19 +76,22 @@
                         <p>No auctions found.</p>
                     {% else %}
                         {% for auction in auctions %}
-                            <div class="auction-card">
-                                <div class="auction-image">
-                                    {% if stamp.images is not empty %}
-                                        <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
-                                    {% else %}
-                                        <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
-                                    {% endif %}
+                        <div class="card__news card_catalog" style="animation-delay: 0.3s;">
+                                <div class="news__img">
+                                {% if stamp.images is not empty %}
+                                    <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
+                                {% else %}
+                                    <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
+                                {% endif %}
                                 </div>
                                 <div class="auction-details">
                                     <h3>{{ auction.stamp.name }}</h3>
                                     <p>Start Date: {{ auction.start_date }}</p>
                                     <p>End Date: {{ auction.end_date }}</p>
                                     <p>Starting Price: ${{ auction.starting_price }}</p>
+                                </div>
+                                <div class="news__read--more">
+                                    <a href="{{ base }}/auctioning/edit?id={{ auction.id }}" class="bid-now news-btn">Modifier l'enchère<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
                                 </div>
                             </div>
                         {% endfor %}

@@ -71,13 +71,14 @@ CREATE TABLE IF NOT EXISTS `auction` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Create `favorites` table
-CREATE TABLE IF NOT EXISTS `favorites` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `stamp_id` int NOT NULL,
-  `is_public` tinyint(1) DEFAULT '0', -- 0 = private, 1 = public (Stampee favorites)
+DROP TABLE IF EXISTS `favorite`;
+CREATE TABLE IF NOT EXISTS `favorite` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `auction_id` INT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_favorite` (`user_id`, `stamp_id`),
   FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
-  FOREIGN KEY (`stamp_id`) REFERENCES `stamp`(`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  FOREIGN KEY (`auction_id`) REFERENCES `auctions`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+

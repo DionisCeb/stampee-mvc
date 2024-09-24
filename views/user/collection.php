@@ -74,7 +74,7 @@
             <section class="catalog__auctions--section">
                 <div class="grid-container">
                 {% if stamps is empty %}
-                    <p>You have not created any stamps yet.</p>
+                    <p>Vous n'avez pas encore créé des timbres.</p>
                     {% else %}
                         {% for stamp in stamps %}
                             <div class="card__news card_catalog" style="animation-delay: 0.3s;">
@@ -100,6 +100,9 @@
                 
                                 <div class="news__read--more">
                                     <a href="{{ base }}/auctioning/create?id={{ stamp.id }}" class="bid-now news-btn">Créer une enchère<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
+                                </div>
+                                <div class="news__read--more">
+                                    <a href="{{ base }}/stamp/details?id={{ stamp.id }}" class="bid-now news-btn">Voir le timbre<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
                                 </div>
                                 <div class="news__read--more">
                                     <a href="{{ base }}/stamp/edit?id={{ stamp.id }}" class="bid-now news-btn">Modifier le Timbre<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>

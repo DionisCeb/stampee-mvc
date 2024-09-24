@@ -72,56 +72,16 @@
             </section>
 
             <section class="catalog__auctions--section">
-                <div class="grid-container">
-                    <!-- <div class="card__news card_catalog" style="animation-delay: 0.3s;">
-                        <div class="news__img">
-                            <img src="{{ asset }}img/timbres/produits/small-img_4.jpg" alt="Découverte d'un Timbre Rare">
-                        </div>
-                        <div class="news__title">
-                            <h1>Découverte d'un Timbre Rare</h1>
-                        </div>
-                        <div class="news__description">
-                            Nous avons le plaisir de vous présenter un timbre rare, récemment découvert. Ce timbre est un ajout précieux pour tout collectionneur passionné, avec des détails exquis et une histoire fascinante.
-                        </div>
-                        <div class="timer catalog-timer">
-                        <div>
-                            <div class="time">
-                            <span>Jours:</span>
-                            </div>
-                            <div class="result">
-                            <span class="days">28</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="time">
-                            <span>Heures:</span>
-                            </div>
-                            <div class="result">
-                            <span class="hours">23</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="time">
-                            <span>Minutes:</span>
-                            </div>
-                            <div class="result">
-                            <span class="minutes">59</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="time">
-                            <span>Secondes:</span>
-                            </div>
-                            <div class="result">
-                            <span class="seconds">42</span>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="news__read--more">
-                            <a href="{{ base }}/stamp/index" class="bid-now news-btn">Placer une mise <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
-                        </div>
-                    </div> -->
-                    {% for stamp in stamps %}
+                <section class="catalog-category">
+                    <div class="catalog-category-title">
+                    <header class="header__title--with_line">
+                        <h2>Coups de coeur de Lord</h2>
+                        <div class="line"></div>
+                    </header>
+                        
+                    </div>
+                    <div class="grid-container">
+                    {% for stamp in lordFavourites %}
                         <div class="card__news card_catalog" style="animation-delay: 0.3s;">
                             <div class="news__img">
                                 {% if stamp.images is not empty %}
@@ -143,47 +103,52 @@
                                 <p>Certifié: {{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</p>
                                 <p>Auteur: {{ stamp.user_name }}</p>
                             </div>
-                            <div class="timer" style="justify-content: center;">
-                                <div>
-                                    <div class="time">
-                                        <span>Jours:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="days">02</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="time">
-                                        <span>Heures:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="hours">10</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="time">
-                                        <span>Minutes:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="minutes">02</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="time">
-                                        <span>Secondes:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="seconds">32</span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="news__read--more">
                                 <a href="{{ base }}/stamp/details?id={{ stamp.id }}" class="bid-now news-btn">Placer une mise <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
                             </div>
                         </div>
                     {% endfor %}
-                    
-                </div>
+                    </div>
+
+                </section>
+
+                <section class="catalog-category">
+                    <div class="catalog-category-title">
+                        <header class="header__title--with_line">
+                            <h3 class="live-bidding__title">Enchères en direct</h3>
+                            <div class="line"></div>
+                        </header>
+                    </div>
+                    <div class="grid-container">
+                        {% for stamp in stamps %}
+                            <div class="card__news card_catalog" style="animation-delay: 0.3s;">
+                                <div class="news__img">
+                                    {% if stamp.images is not empty %}
+                                        <img src="{{ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
+                                    {% else %}
+                                        <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
+                                    {% endif %}
+                                </div>
+                                <div class="news__title">
+                                    <h1>{{ stamp.name }}</h1>
+                                </div>
+                                <div class="news__details">
+                                    <p>Date de création: {{ stamp.creation_date }}</p>
+                                    <p>Couleur(s): {{ stamp.color }}</p>
+                                    <p>Pays d’origine: {{ stamp.country }}</p>
+                                    <p>Condition: {{ stamp.stamp_condition }}</p>
+                                    <p>Tirage: {{ stamp.print_run }}</p>
+                                    <p>Dimensions: {{ stamp.dimensions }}</p>
+                                    <p>Certifié: {{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</p>
+                                    <p>Auteur: {{ stamp.user_name }}</p>
+                                </div>
+                                <div class="news__read--more">
+                                    <a href="{{ base }}/stamp/details?id={{ stamp.id }}" class="bid-now news-btn">Placer une mise <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
 
                 <!-----Pagination----->
                 <div class="catalog-pagination">

@@ -85,6 +85,8 @@ class Auction extends CRUD {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    
+    
 
     
 }

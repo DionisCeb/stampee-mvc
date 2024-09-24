@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Providers\Auth;
 use App\Models\Privilege;
 use App\Models\Auction;
+use App\Models\Favourite;
 
 class StampController{
 
@@ -96,33 +97,44 @@ class StampController{
     
 
     public function list() {
-
         $stampModel = new Stamp();
         $userModel = new User();
         $stampImageModel = new StampImage();
-
-        $stamps = $stampModel->findAllStampsOfAuction(); // Fetch all stamps
-
+        $favouriteModel = new Favourite();
+    
+        // Fetch all stamps that are part of an auction
+        $stamps = $stampModel->findAllStampsOfAuction();
+    
+        // Fetch the favorite auctions of the Lord
+        $lordFavourites = $favouriteModel->findLordFavourites();
+    
+        // Process all stamps
         foreach ($stamps as &$stamp) {
             $images = $stampImageModel->findByStampId($stamp['id']);
             $stamp['images'] = $images;
-
+    
             // Fetch the user who created the stamp
             $user = $userModel->findOne($stamp['user_id']);
-
-            //Check if user is found
-            if ($user) {
-                $stamp['user_name'] = $user['name'];
-            } else {
-                $stamp['user_name'] = 'Unknown';
-            }
-            
+            $stamp['user_name'] = $user ? $user['name'] : 'Unknown';
         }
+    
+        foreach ($lordFavourites as &$favourite) {
+            $images = $stampImageModel->findByStampId($favourite['stamp_id']);
+            $favourite['images'] = $images;
+    
+            // Fetch the user who created the stamp
+            $user = $userModel->findOne($favourite['user_id']);
+            $favourite['user_name'] = $user ? $user['name'] : 'Unknown';
+        }
+    
+        // Pass both regular stamps and Lord's favorite stamps to the view
         View::render('stamp/catalog', [
             'stamps' => $stamps,
+            'lordFavourites' => $lordFavourites,
             'scripts' => ['product-card-slider.js']
         ]);
     }
+    
     
 
     public function edit() {
