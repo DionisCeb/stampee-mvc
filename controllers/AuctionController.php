@@ -5,6 +5,7 @@ use App\Providers\View;
 use App\Models\Auction;
 use App\Models\User;
 use App\Models\Stamp;
+use App\Models\StampImage;
 /**
  * Responsable du traitement pour rendre disponible certaines pages de ce site
  */
@@ -69,5 +70,104 @@ class AuctionController {
             return View::render('error', ['message' => "Impossible de créer l'enchère."]);
         }
     }
+
+
+
+    /**
+     * EDIT VIEW
+     */
+
+     public function edit() {
+        // Check if auction ID is present and valid
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            return View::redirect('user/collection'); // Redirect if no valid ID is provided
+        }
+    
+        $auctionId = intval($_GET['id']);
+        $auctionModel = new Auction();
+        $auction = $auctionModel->findOne($auctionId); // Fetch auction details
+    
+        if (!$auction) {
+            return View::redirect('user/collection'); // Redirect if auction is not found
+        }
+    
+        // Check if the user is logged in
+        if (!isset($_SESSION['user_id'])) {
+            return View::redirect('login');
+        }
+    
+        // Retrieve the stamp details to validate the creator
+        $stampModel = new Stamp();
+        $stamp = $stampModel->findOne($auction['stamp_id']);
+        
+        // Ensure the logged-in user is the creator of the stamp
+        if ($stamp['user_id'] != $_SESSION['user_id']) {
+            return View::redirect('user/collection');
+        }
+    
+        View::render('auction/edit', [
+            'auction' => $auction,
+            'scripts' => ['active-link.js']
+        ]);
+    }
+
+
+    public function update() {
+        if (!isset($_POST['auction_id']) || !is_numeric($_POST['auction_id'])) {
+            return View::render('error', ['message' => 'L\'ID de l\'enchère est manquant ou invalide.']);
+        }
+    
+        $auctionId = intval($_POST['auction_id']);
+    
+        $data = [
+            'start_date' => $_POST['start_date'],
+            'end_date' => $_POST['end_date'],
+            'starting_price' => floatval($_POST['starting_price'])
+        ];
+    
+        $auctionModel = new Auction();
+        $update = $auctionModel->updateAuction($data, $auctionId);
+    
+        if ($update) {
+            return View::redirect('user/collection');
+        } else {
+            return View::render('error', ['message' => "Impossible de mettre à jour l'enchère."]);
+        }
+    }
+    
+
+
+    public function userAuctions() {
+        // Check if the user is logged in
+        if (!isset($_SESSION['user_id'])) {
+            return View::redirect('login'); // Redirect to login if not logged in
+        }
+    
+        $userId = $_SESSION['user_id']; // Get the logged-in user's ID
+    
+        $auctionModel = new Auction();
+        $stampImageModel = new StampImage();
+        $stampModel = new Stamp();
+    
+        // Fetch all auctions created by the logged-in user
+        $auctions = $auctionModel->findByUserId($userId);
+    
+        // Retrieve the associated stamps and images for each auction
+        foreach ($auctions as &$auction) {
+            $stamp = $stampModel->findOne($auction['stamp_id']);
+            $auction['stamp'] = $stamp;
+    
+            $images = $stampImageModel->findByStampId($auction['stamp_id']);
+            $auction['images'] = $images;
+        }
+
+        View::render('auction/collection', [
+            'auctions' => $auctions,
+            'stamp' => $stamp,
+            'scripts' => ['product-card-slider.js']
+        ]);
+    }
+    
+    
     
 }

@@ -135,8 +135,8 @@
                             </div>
                             <div class="news__details">
                                 <p>Date de création: {{ stamp.creation_date }}</p>
-                                <p>Couleur(s): {{ stamp.colors }}</p>
-                                <p>Pays d’origine: {{ stamp.country_of_origin }}</p>
+                                <p>Couleur(s): {{ stamp.color }}</p>
+                                <p>Pays d’origine: {{ stamp.country }}</p>
                                 <p>Condition: {{ stamp.stamp_condition }}</p>
                                 <p>Tirage: {{ stamp.print_run }}</p>
                                 <p>Dimensions: {{ stamp.dimensions }}</p>

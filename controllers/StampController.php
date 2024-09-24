@@ -101,7 +101,7 @@ class StampController{
         $userModel = new User();
         $stampImageModel = new StampImage();
 
-        $stamps = $stampModel->findAll(); // Fetch all stamps
+        $stamps = $stampModel->findAllStampsOfAuction(); // Fetch all stamps
 
         foreach ($stamps as &$stamp) {
             $images = $stampImageModel->findByStampId($stamp['id']);

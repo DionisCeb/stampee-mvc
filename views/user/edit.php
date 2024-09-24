@@ -4,8 +4,14 @@
 
 <section class="flex-center-center min-height70">
         <div class="structure flex gap20">
-            <div class="profile-links">
+            <div class="profile-links flex-column gap20">
                 <a href="{{ base }}/user/collection" class="bid-now news-btn">Voir ma collection
+                    <i class="arrow-right"><img src="{{ asset }}img/icons/gallery/gallery.png" alt="arrow-back"></i>
+                </a>
+                <a href="{{ base }}/stamp/create" class="bid-now news-btn">Créer un timbre
+                    <i class="arrow-right"><img src="{{ asset }}img/icons/gallery/gallery.png" alt="arrow-back"></i>
+                </a>
+                <a href="{{ base }}/user/auctions" class="bid-now news-btn">Mes enchères
                     <i class="arrow-right"><img src="{{ asset }}img/icons/gallery/gallery.png" alt="arrow-back"></i>
                 </a>
             </div>

@@ -15,8 +15,8 @@ class Stamp extends CRUD {
     protected $fillable = [
         'name', 
         'creation_date', 
-        'colors', 
-        'country_of_origin', 
+        'color', 
+        'country', 
         'main_image', 
         'additional_images', 
         'condition', 
@@ -31,9 +31,29 @@ class Stamp extends CRUD {
      * 
      * @return array Liste des timbres
      */
-    public function findAll() {
+    public function findAllStamps() {
         // Requête SQL pour obtenir toutes les timbres
         $sql = "SELECT * FROM " . $this->table;
+        
+        // Exécuter la requête
+        $stmt = $this->query($sql);
+        
+        // Récupérer toutes les timbres
+        $stamps = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+        return $stamps;
+    }
+
+    /**
+     * Récupère toutes les timbres avec les informations associées dans l'enchere
+     * 
+     * @return array Liste des timbres dans une enchere
+     */
+    public function findAllStampsOfAuction() {
+        // Requête SQL pour obtenir toutes les timbres dans une enchere
+        $sql = "SELECT s.* 
+            FROM " . $this->table . " AS s
+            JOIN auctions AS a ON s.id = a.stamp_id";
         
         // Exécuter la requête
         $stmt = $this->query($sql);

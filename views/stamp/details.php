@@ -32,6 +32,7 @@
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Condition :</span> <span class="item-desc">{{ stamp.stamp_condition }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Pays d’origine :</span> <span class="item-desc">{{ stamp.country }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Dimensions :</span> <span class="item-desc">{{ stamp.dimensions }}</span></div>
+                                    <div class="list-item" style="padding: 10px;"><span class="item-title">Couleurs :</span> <span class="item-desc">{{ stamp.color }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Tirage :</span> <span class="item-desc">{{ stamp.print_run }}</span></div>
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Certifié :</span> <span class="item-desc">{{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</span></div>
                                 </div>

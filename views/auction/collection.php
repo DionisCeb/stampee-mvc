@@ -1,15 +1,14 @@
-{{ include('layouts/header.php', {title:'My Collection'})}}
+{{ include('layouts/header.php', {title:'Tes encheres'})}}
 
 
-<h1>Your Stamp Collection</h1>
+<h1>Tes encheres</h1>
 <div class="collection-links">
     <a href="{{ base }}/user/edit" class="bid-now news-btn">Retour à votre profil
         <i class="arrow-right"><img src="{{ asset }}img/icons/arrows/back.png" alt="arrow-back"></i>
     </a>
 </div>
-    
 
-    <section class="catalog flex-center">
+<section class="catalog flex-center">
         <div class="catalog-wrapper">
             <section class="catalog__filter--section">
                 <div class="filter-box">
@@ -73,46 +72,29 @@
 
             <section class="catalog__auctions--section">
                 <div class="grid-container">
-                {% if stamps is empty %}
-                    <p>You have not created any stamps yet.</p>
+                    {% if auctions is empty %}
+                        <p>No auctions found.</p>
                     {% else %}
-                        {% for stamp in stamps %}
-                            <div class="card__news card_catalog" style="animation-delay: 0.3s;">
-                                <div class="news__img">
-                                {% if stamp.images is not empty %}
-                                    <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
-                                {% else %}
-                                    <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
-                                {% endif %}
+                        {% for auction in auctions %}
+                            <div class="auction-card">
+                                <div class="auction-image">
+                                    {% if stamp.images is not empty %}
+                                        <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
+                                    {% else %}
+                                        <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
+                                    {% endif %}
                                 </div>
-                                <div class="news__title">
-                                    <h1>{{ stamp.name }}</h1>
-                                </div>
-                                <div class="news__details">
-                                    <p>Date de création: {{ stamp.creation_date }}</p>
-                                    <p>Couleur(s): {{ stamp.colors }}</p>
-                                    <p>Pays d’origine: {{ stamp.country_of_origin }}</p>
-                                    <p>Condition: {{ stamp.stamp_condition }}</p>
-                                    <p>Tirage: {{ stamp.print_run }}</p>
-                                    <p>Dimensions: {{ stamp.dimensions }}</p>
-                                    <p>Certifié: {{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</p>
-                                </div>
-                
-                                <div class="news__read--more">
-                                    <a href="{{ base }}/auctioning/create?id={{ stamp.id }}" class="bid-now news-btn">Créer une enchère<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
-                                </div>
-                                <div class="news__read--more">
-                                    <a href="{{ base }}/stamp/edit?id={{ stamp.id }}" class="bid-now news-btn">Modifier le Timbre<i class="arrow-right"><img src="{{ asset }}img/icons/arrows/arrow-right.svg" alt="arrow-right"></i></a>
+                                <div class="auction-details">
+                                    <h3>{{ auction.stamp.name }}</h3>
+                                    <p>Start Date: {{ auction.start_date }}</p>
+                                    <p>End Date: {{ auction.end_date }}</p>
+                                    <p>Starting Price: ${{ auction.starting_price }}</p>
                                 </div>
                             </div>
-                        {% endfor %}  
-                    {% endif %}
-                    
-                    
+                        {% endfor %}
+                    {% endif %}      
                 </div>
             </section>
         </div>
     </section>
-
-<!---Footer-->
 {{ include('layouts/footer.php')}}

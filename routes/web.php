@@ -21,8 +21,11 @@ Route::post('/user/edit', 'UserController@update');
 /*logout*/
 Route::get('/logout', 'AuthController@delete');
 
-/*user collection*/
+/*user collection timbres*/
 Route::get('/user/collection', 'StampController@collection');
+
+/*user collection timbres*/
+Route::get('/user/auctions', 'AuctionController@userAuctions');
 
 
 
@@ -48,6 +51,9 @@ Route::get('/page/about', 'PagesController@about');
 
 Route::get('/auctioning/create', 'AuctionController@create');
 Route::post('/auctioning/store', 'AuctionController@store');
+
+Route::get('/auctioning/edit', 'AuctionController@edit');
+Route::post('/auctioning/update', 'AuctionController@update');
 
 
 Route::dispatch();
