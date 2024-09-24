@@ -80,6 +80,41 @@ class StampImage extends CRUD {
     return $stmt->execute();
 }
 
+
+public function findMainImageByStampId($stampId) {
+    $sql = "SELECT * FROM " . $this->table . " WHERE stamp_id = :stamp_id AND is_main = 1";
+    $stmt = $this->prepare($sql);
+    $stmt->bindParam(':stamp_id', $stampId, \PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
+}
+
+public function findAdditionalImageByStampIdAndOrder($stampId, $imageOrder) {
+    $sql = "SELECT * FROM " . $this->table . " WHERE stamp_id = :stamp_id AND image_order = :image_order";
+    $stmt = $this->prepare($sql);
+    $stmt->bindParam(':stamp_id', $stampId, \PDO::PARAM_INT);
+    $stmt->bindParam(':image_order', $imageOrder, \PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
+}
+
+public function updateImage($data, $id) {
+    $fields = array_keys($data);
+    $setClause = implode(", ", array_map(function ($field) {
+        return "$field = :$field";
+    }, $fields));
+
+    $sql = "UPDATE " . $this->table . " SET $setClause WHERE id = :id";
+    $stmt = $this->prepare($sql);
+    $stmt->bindValue(':id', $id);
+
+    foreach ($data as $key => $value) {
+        $stmt->bindValue(":$key", $value);
+    }
+
+    return $stmt->execute();
+}
+
     
     
 

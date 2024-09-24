@@ -197,6 +197,58 @@ class StampController{
         $update = $stamp->update($data, $stampId);
     
         if ($update) {
+            $stampImage = new StampImage();
+    
+            // Upload and update the main image
+            if (!empty($_FILES['image_path']['name']['main'])) {
+                $uploadedMainImagePath = $stampImage->uploadFile($_FILES['image_path']['tmp_name']['main'], $_FILES['image_path']['name']['main']);
+                if ($uploadedMainImagePath) {
+                    // Check if a main image already exists
+                    $existingMainImage = $stampImage->findMainImageByStampId($stampId);
+                    if ($existingMainImage) {
+                        // Update existing main image record
+                        $stampImage->updateImage([
+                            'image_path' => $uploadedMainImagePath
+                        ], $existingMainImage['id']);
+                    } else {
+                        // Insert new main image record if not exists
+                        $stampImage->insertImage([
+                            'stamp_id' => $stampId,
+                            'image_path' => $uploadedMainImagePath,
+                            'is_main' => 1,
+                            'image_order' => 1
+                        ]);
+                    }
+                }
+            }
+    
+            // Upload and update additional images
+            if (!empty($_FILES['image_path']['name']['additional'])) {
+                foreach ($_FILES['image_path']['name']['additional'] as $index => $additionalImageName) {
+                    if (!empty($additionalImageName)) {
+                        $uploadedAdditionalImagePath = $stampImage->uploadFile($_FILES['image_path']['tmp_name']['additional'][$index], $additionalImageName);
+                        if ($uploadedAdditionalImagePath) {
+                            // Check if an additional image already exists in that order
+                            $existingAdditionalImage = $stampImage->findAdditionalImageByStampIdAndOrder($stampId, $index + 2);
+                            if ($existingAdditionalImage) {
+                                // Update existing additional image record
+                                $stampImage->updateImage([
+                                    'image_path' => $uploadedAdditionalImagePath
+                                ], $existingAdditionalImage['id']);
+                            } else {
+                                // Insert new additional image record if not exists
+                                $stampImage->insertImage([
+                                    'stamp_id' => $stampId,
+                                    'image_path' => $uploadedAdditionalImagePath,
+                                    'is_main' => 0,
+                                    'image_order' => $index + 2 // Main image is 1, so additional images start from 2
+                                ]);
+                            }
+                        }
+                    }
+                }
+            }
+    
             return View::redirect('home');
         } else {
             return View::render('error');

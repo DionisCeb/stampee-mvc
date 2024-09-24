@@ -57,22 +57,22 @@
 
         <div class="form-group">
             <label for="main_image">Main Image URL:</label>
-            <input type="text" id="additionalImage1" name="image_path[additional][]" value="{{ additional_images[0] ?? '' }}">
+            <input type="file" id="mainImage" name="image_path[main]" accept="image/*">
         </div>
 
         <div class="form-group">
             <label for="additionalImage1">Additional Image URL 1:</label>
-            <input type="text" id="additionalImage1" name="image_path[additional][]" value="{{ additional_images[0] ?? '' }}">
+            <input type="file" id="additionalImage1" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="form-group">
             <label for="additionalImage2">Additional Image URL 2:</label>
-            <input type="text" id="additionalImage2" name="image_path[additional][]" placeholder="https://example.com/additional-image2.jpg" value="{{ additional_images[1] ?? '' }}">
+            <input type="file" id="additionalImage2" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="form-group">
             <label for="additionalImage3">Additional Image URL 3:</label>
-            <input type="text" id="additionalImage3" name="image_path[additional][]" placeholder="https://example.com/additional-image3.jpg" value="{{ additional_images[2] ?? '' }}">
+            <input type="file" id="additionalImage3" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="reserve-submit">

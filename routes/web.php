@@ -34,8 +34,8 @@ Route::post('/stamp/create', 'StampController@store');
 /**
  * Stamp edit
  */
-Route::get('/auction/edit', 'AuctionController@edit');
-Route::post('/auction/update', 'AuctionController@update');
+Route::get('/stamp/edit', 'StampController@edit');
+Route::post('/stamp/edit', 'StampController@update');
 
 
 Route::get('/catalog', 'StampController@list');
