@@ -1,6 +1,6 @@
 {{ include('layouts/header.php', {title:'Enchères'})}}
 
-
+<script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
     <section class="catalog flex-center">
         <div class="catalog-wrapper">
             <section class="catalog__filter--section">
@@ -123,12 +123,23 @@
                         {% for stamp in stamps %}
                             <div class="card__news card_catalog" style="animation-delay: 0.3s;">
                                 <div class="news__img">
+                                    {% if session.privilege_id == 1 %} 
+                                    <form action="{{ base }}/add-to-favourite" method="POST">
+                                        <input type="hidden" name="stamp_id" value="{{ stamp.id }}">
+                                        <input type="hidden" name="is_favourite" value="{{ stamp.is_favourite ? 0 : 1 }}"> 
+                                        <!-- If already favorite, set to 0 to remove; otherwise, 1 to add -->
+                                        <button type="submit" id='heart' class="button-heart {{ stamp.is_favourite ? 'active' : '' }}"></button>
+    
+                                    </form>
+                                    {% endif %}
                                     {% if stamp.images is not empty %}
                                         <img src="{{ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
                                     {% else %}
                                         <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
                                     {% endif %}
                                 </div>
+                                
+
                                 <div class="news__title">
                                     <h1>{{ stamp.name }}</h1>
                                 </div>
@@ -187,6 +198,8 @@
             
         </div>
     </section>
+
+    
 
      <!---Footer-->
      {{ include('layouts/footer.php')}}

@@ -43,6 +43,12 @@ Route::post('/stamp/edit', 'StampController@update');
 
 Route::get('/catalog', 'StampController@list');
 
+/**
+ * Coups de coeur de Lord
+ */
+Route::post('/add-to-favourite', 'FavouriteController@toggle');
+
+
 
 
 /*les pages*/

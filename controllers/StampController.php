@@ -131,7 +131,7 @@ class StampController{
         View::render('stamp/catalog', [
             'stamps' => $stamps,
             'lordFavourites' => $lordFavourites,
-            'scripts' => ['product-card-slider.js']
+            'scripts' => ['heartlord.js']
         ]);
     }
     
