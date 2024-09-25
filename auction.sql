@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 17, 2024 at 08:35 PM
+-- Generation Time: Sep 25, 2024 at 04:02 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -20,6 +20,58 @@ SET time_zone = "+00:00";
 --
 -- Database: `auction`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auctions`
+--
+
+DROP TABLE IF EXISTS `auctions`;
+CREATE TABLE IF NOT EXISTS `auctions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `starting_price` decimal(10,2) NOT NULL,
+  `stamp_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_stamp_id` (`stamp_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `auctions`
+--
+
+INSERT INTO `auctions` (`id`, `start_date`, `end_date`, `starting_price`, `stamp_id`) VALUES
+(5, '2024-10-20', '2024-11-05', 300.00, 6),
+(4, '2024-10-15', '2024-10-30', 250.00, 4),
+(3, '2024-10-10', '2024-10-25', 200.00, 3),
+(2, '2024-10-05', '2024-10-20', 150.00, 2),
+(1, '2024-10-01', '2024-10-15', 100.00, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favourite`
+--
+
+DROP TABLE IF EXISTS `favourite`;
+CREATE TABLE IF NOT EXISTS `favourite` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `auction_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `auction_id` (`auction_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `favourite`
+--
+
+INSERT INTO `favourite` (`id`, `user_id`, `auction_id`, `created_at`) VALUES
+(14, 2, 1, '2024-09-25 04:02:09');
 
 -- --------------------------------------------------------
 
@@ -62,18 +114,20 @@ CREATE TABLE IF NOT EXISTS `stamp` (
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `stamp`
 --
 
 INSERT INTO `stamp` (`id`, `name`, `creation_date`, `color`, `country`, `stamp_condition`, `print_run`, `dimensions`, `certified`, `user_id`) VALUES
-(2, 'German Stamp', '2019-05-22', 'Rouge', 'Allemagne', 'Bonne', 500, '25x35mm', '', 0),
-(8, 'Egyptian Stamp', '2024-09-27', '', '', 'Parfaite', 24, '25 * 45', '', 0),
-(9, 'UK Stamp', '2024-10-03', '', '', 'Parfaite', 22, '22*22', '', 11),
-(10, 'Canadian Stamp', '2024-10-03', '', '', 'Parfaite', 22, '22*22', '', 11),
-(11, 'US Stamp', '2024-09-27', '', '', 'Parfaite', 22, '22*22', '', 11);
+(5, 'Timbre Napoléon', '2018-09-30', 'Bleu, Rouge', 'France', 'Endommagé', 1500, '20x30', 'Non', 2),
+(2, 'Timbre Tour Eiffel', '2021-07-10', 'Vert, Jaune', 'France', 'Excellente', 3000, '25x35', 'Non', 2),
+(3, 'Timbre Louis XIV', '2020-08-01', 'Noir, Blanc', 'France', 'Bonne', 2000, '28x38', 'Oui', 2),
+(4, 'Timbre Château de Versailles', '2019-11-22', 'Or, Violet', 'France', 'Moyenne', 1000, '35x45', 'Non', 2),
+(1, 'Timbre Marianne', '2022-05-14', 'Rouge, Bleu', 'France', 'Parfaite', 5000, '30x40', 'Oui', 2),
+(6, 'Timbre Ancien Italie', '1905-05-01', 'Vert', 'Italie', 'Parfaite', 3000, '45x30', 'Oui', 1),
+(7, 'Timbre Vintage Canada', '1950-07-15', 'Bleu', 'Canada', 'Excellente', 5000, '40x25', 'Non', 1);
 
 -- --------------------------------------------------------
 
@@ -90,37 +144,41 @@ CREATE TABLE IF NOT EXISTS `stamp_images` (
   `image_order` int DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `stamp_id` (`stamp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `stamp_images`
 --
 
 INSERT INTO `stamp_images` (`id`, `stamp_id`, `image_path`, `is_main`, `image_order`) VALUES
-(6, 1, 'https://via.placeholder.com/100x100?text=Stamp+1+Image+1', 0, 2),
-(5, 1, 'https://via.placeholder.com/400x400?text=Stamp+1+Main', 1, 1),
-(7, 1, 'https://via.placeholder.com/100x100?text=Stamp+1+Image+2', 0, 3),
-(8, 1, 'https://via.placeholder.com/100x100?text=Stamp+1+Image+3', 0, 4),
-(9, 2, 'https://images.pexels.com/photos/8002490/pexels-photo-8002490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 1, 1),
-(10, 2, 'https://via.placeholder.com/100x100?text=Stamp+2+Image+1', 0, 2),
-(11, 2, 'https://via.placeholder.com/100x100?text=Stamp+2+Image+2', 0, 3),
-(12, 2, 'https://via.placeholder.com/100x100?text=Stamp+2+Image+3', 0, 4),
-(21, 8, 'https://img.freepik.com/free-vector/flat-design-postage-stamp_23-2150496924.jpg?t=st=1726587732~exp=1726591332~hmac=7a66b126ed517394f3e97ac32812708f06124ab36b1e35fdc4ec778ca5abdb64&w=1800', 1, 1),
-(22, 8, 'https://img.freepik.com/free-vector/set-city-stamps-flat-style_23-2147780766.jpg?t=st=1726587755~exp=1726591355~hmac=350ae7ead25cf4622526b3a818fa60204132f50c29266f3c0053b9a3839b4c8c&w=1380', 0, 2),
-(23, 8, 'https://img.freepik.com/free-vector/hand-drawn-christmas-stamp-collection_23-2148743671.jpg?t=st=1726587767~exp=1726591367~hmac=851c003b7817df61f5257cab257ce28915c4cf13423f1a3ee576a6dcac82a729&w=1380', 0, 3),
-(24, 8, 'https://img.freepik.com/free-vector/set-landmark-stamps-flat-style_23-2147781078.jpg?t=st=1726587780~exp=1726591380~hmac=ce3fce8052532994b53ddd16ba6828e735e51e8971941f46529b68dd77399847&w=1380', 0, 4),
-(25, 9, 'https://images.pexels.com/photos/248993/pexels-photo-248993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 1, 1),
-(26, 9, 'https://via.placeholder.com/100x100?text=Stamp+9+Image+1', 0, 2),
-(27, 9, 'https://via.placeholder.com/100x100?text=Stamp+9+Image+2', 0, 3),
-(28, 9, 'https://via.placeholder.com/100x100?text=Stamp+9+Image+3', 0, 4),
-(29, 10, 'https://images.pexels.com/photos/7790254/pexels-photo-7790254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 1, 1),
-(30, 10, 'https://via.placeholder.com/100x100?text=Stamp+10+Image+1', 0, 2),
-(31, 10, 'https://via.placeholder.com/100x100?text=Stamp+10+Image+2', 0, 3),
-(32, 10, 'https://via.placeholder.com/100x100?text=Stamp+10+Image+3', 0, 4),
-(33, 11, 'https://images.unsplash.com/photo-1609387433510-d2ca76dd0259?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvaW5zfGVufDB8fDB8fHww', 1, 1),
-(34, 11, 'https://images.unsplash.com/photo-1521897258701-21e2a01f5e8b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 0, 2),
-(35, 11, 'https://images.unsplash.com/photo-1521897258701-21e2a01f5e8b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 0, 3),
-(36, 11, 'https://images.unsplash.com/photo-1521897258701-21e2a01f5e8b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 0, 4);
+(117, 2, 'uploads/stamps/placeholder.png', 0, 4),
+(134, 7, 'uploads/stamps/placeholder.png', 0, 4),
+(122, 4, 'uploads/stamps/placeholder.png', 0, 3),
+(123, 4, 'uploads/stamps/placeholder.png', 0, 4),
+(124, 5, 'uploads/stamps/placeholder.png', 0, 2),
+(125, 5, 'uploads/stamps/placeholder.png', 0, 3),
+(126, 5, 'uploads/stamps/placeholder.png', 0, 4),
+(127, 6, 'uploads/stamps/stamp_6.jpg', 1, 1),
+(128, 7, 'uploads/stamps/stamp_7.jpg', 1, 1),
+(129, 6, 'uploads/stamps/placeholder.png', 0, 2),
+(130, 6, 'uploads/stamps/placeholder.png', 0, 3),
+(131, 6, 'uploads/stamps/placeholder.png', 0, 4),
+(132, 7, 'uploads/stamps/placeholder.png', 0, 2),
+(133, 7, 'uploads/stamps/placeholder.png', 0, 3),
+(121, 4, 'uploads/stamps/placeholder.png', 0, 2),
+(120, 3, 'uploads/stamps/placeholder.png', 0, 4),
+(119, 3, 'uploads/stamps/placeholder.png', 0, 3),
+(118, 3, 'uploads/stamps/placeholder.png', 0, 2),
+(116, 2, 'uploads/stamps/placeholder.png', 0, 3),
+(115, 2, 'uploads/stamps/placeholder.png', 0, 2),
+(114, 1, 'uploads/stamps/placeholder.png', 0, 4),
+(113, 1, 'uploads/stamps/placeholder.png', 0, 3),
+(112, 1, 'uploads/stamps/placeholder.png', 0, 2),
+(4, 4, 'uploads/stamps/stamp_4.jpg', 1, 1),
+(5, 5, 'uploads/stamps/stamp_5.jpg', 1, 1),
+(2, 2, 'uploads/stamps/stamp_2.png', 1, 1),
+(3, 3, 'uploads/stamps/stamp_3.jpg', 1, 1),
+(1, 1, 'uploads/stamps/stamp_1.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -142,17 +200,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   KEY `fk_privilege_id` (`privilege_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `surname`, `username`, `password`, `email`, `privilege_id`, `created_at`) VALUES
-(13, 'Dionis', 'Cebanu', 'dionis@gmail.com', '$2y$10$EoIL1KIMEJO2T/5ns8uIAOODr4QlOAK8gwZrnqEn9zFAMZdGEZeIW', 'dionis@gmail.com', 1, '2024-09-14 20:47:31'),
-(12, 'alexei', 'banaga', 'alexei@gmail.com', '$2y$10$.i1DQuq7bEy.bHAUEyzBWeomdImCKXk62qXFJDJwjkuBt3xxhX6g.', 'alexei@gmail.com', 1, '2024-09-13 19:47:49'),
-(11, 'Dionisulikca', 'Cebanu', 'dioniska@gmail.com', '$2y$10$/.PXwoEsQj7dU/UvOU762.fhFTha3uNal6Jjad6vKGJKBA7tpXrf.', 'dioniska@gmail.com', 2, '2024-09-13 18:17:52'),
-(15, 'Cristina', 'Alionka', 'cristina@gmail.com', '$2y$10$cNNrTlolN2M8iUoAZdXvrOqdf4fc0tB7.iJe/YmU2sKP5RpmEoddi', 'cristina@gmail.com', 2, '2024-09-14 21:24:11');
+(1, 'Dionis', 'Cebanu', 'dionis@gmail.com', '$2y$10$EoIL1KIMEJO2T/5ns8uIAOODr4QlOAK8gwZrnqEn9zFAMZdGEZeIW', 'dionis@gmail.com', 1, '2024-09-14 20:47:31'),
+(2, 'Lord', 'Stampee', 'stampee@gmail.com', '$2y$10$dxPp4T/ePOBqTKmt8kaEn.heQ1qlJfy2mkqjCmQPbv8WCIIEPSuFa', 'stampee@gmail.com', 1, '2024-09-24 23:54:30');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
