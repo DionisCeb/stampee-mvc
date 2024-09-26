@@ -18,7 +18,7 @@
             <div class="profile-section">
                 <div class="profile-image">
                     <img src="{{ asset }}img/profile/profile1.webp" alt="Profile Image of {{ user.name }}" id="profileImage">
-                    <button class="btn btn-connection" id="changeImageBtn">Change the profile image</button>
+                    <!-- <button class="btn btn-connection" id="changeImageBtn">Change the profile image</button> -->
                 </div>
                 
             </div>
@@ -26,7 +26,7 @@
                 <div method="post" class="" >
             
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label for="name">Nom:</label>
                         <input type="text" id="name" name="name" value="{{ user.name }}" required>
                         {% if errors.name is defined %}
                             <span class="error">{{ errors.name }}</span>
@@ -34,7 +34,7 @@
                     </div>
             
                     <div class="form-group">
-                        <label for="surname">Surname:</label>
+                        <label for="surname">Prenom:</label>
                         <input type="text" id="surname" name="surname" value="{{ user.surname }}" required>
                         {% if errors.name is defined %}
                             <span class="error">{{ errors.name }}</span>
@@ -42,7 +42,7 @@
                     </div>
             
                     <div class="form-group">
-                        <label for="username">Username:</label>
+                        <label for="username">Nom d'utilisateur(e-mail):</label>
                         <input type="text" id="username" name="username" value="{{ user.username }}" required>
                         {% if errors.username is defined %}
                             <span class="error">{{ errors.username }}</span>
@@ -50,7 +50,7 @@
                     </div>
             
                     <div class="form-group">
-                        <label for="password">Password (Leave blank if not changing)</label>
+                        <label for="password">Mot de Passe (Laisser vide s'il change pas)</label>
                         <input type="password" name="password" id="password">
                         {% if errors.password is defined %}
                             <span class="error">{{ errors.password }}</span>
@@ -58,7 +58,7 @@
                     </div>
             
                     <div class="reserve-submit">
-                        <input type="submit" value="Update">
+                        <input type="submit" value="Modifier">
                     </div>
                 </div>
             </div>

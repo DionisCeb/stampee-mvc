@@ -5,9 +5,11 @@ use App\Providers\View;
 use App\Models\Stamp;
 use App\Models\StampImage;
 use App\Models\User;
+
 use App\Providers\Auth;
 use App\Models\Privilege;
 use App\Models\Auction;
+use App\Models\Bid;
 use App\Models\Favourite;
 
 class StampController{
@@ -277,6 +279,7 @@ class StampController{
         $stampModel = new Stamp;
         $userModel = new User;
         $auctionModel = new Auction;
+        $bidModel = new Bid;
         
         $stamp = $stampModel->findOne($stampId);
         
@@ -292,12 +295,18 @@ class StampController{
         $auction = $auctionModel->findByStampId($stampId);
         if ($auction) {
             $stamp['auction'] = $auction;
+
+            //Fetch the highest bid for this auction
+            $highestBid = $bidModel->getHighestBid($auction['id']);
+            $stamp['highest_bid'] = $highestBid ? $highestBid : $auction['starting_price'];
         } else {
             $stamp['auction'] = null;  // No auction for this stamp
         }
     
         View::render('stamp/details', [
-            'scripts' => ['product-card-slider.js', 'timer.js'],  // Add timer script here
+            'scripts' => ['product-card-slider.js', 
+            'timer.js',
+            'imagedisplay.js'], 
             'stamp' => $stamp
         ]);
     }

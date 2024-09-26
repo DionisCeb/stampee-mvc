@@ -7,25 +7,25 @@
     <form action="{{ base }}/stamp/create" method="post" class="create-stamp-form" enctype="multipart/form-data">
         <!-- Stamp Name -->
         <div class="form-group">
-            <label for="stampName">Stamp Name</label>
+            <label for="stampName">Nom de Timbre</label>
             <input type="text" id="stampName" name="name" required>
         </div>
 
         <!-- Creation Date -->
         <div class="form-group">
-            <label for="creationDate">Creation Date</label>
+            <label for="creationDate">Date de Creation</label>
             <input type="date" id="creationDate" name="creation_date" required>
         </div>
 
         <!-- Colors -->
         <div class="form-group">
-            <label for="colors">Colors</label>
+            <label for="colors">Couleur(s)</label>
             <input type="text" id="colors" name="color" placeholder="e.g., red, blue" required>
         </div>
 
         <!-- Country of Origin -->
         <div class="form-group">
-            <label for="countryOfOrigin">Country of Origin</label>
+            <label for="countryOfOrigin">Pays</label>
             <input type="text" id="countryOfOrigin" name="country" required>
         </div>
 
@@ -40,7 +40,7 @@
 
         <!-- Print Run -->
         <div class="form-group">
-            <label for="printRun">Print Run</label>
+            <label for="printRun">Tirage</label>
             <input type="number" id="printRun" name="print_run" required>
         </div>
 
@@ -52,7 +52,7 @@
 
         <!-- Certification -->
         <div class="form-group">
-            <label for="certified">Certified</label>
+            <label for="certified">Certifie</label>
             <select id="certified" name="certified" required>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -61,23 +61,23 @@
 
         <!-- Main Image URL -->
         <div class="form-group">
-            <label for="mainImage">Main Image</label>
+            <label for="mainImage">Image Principale</label>
             <input type="file" id="mainImage" name="image_path[main]" accept="image/*" required>
         </div>
 
         <!-- Additional Image URLs -->
         <div class="form-group">
-            <label for="additionalImage1">Additional Image 1</label>
+            <label for="additionalImage1"> Image Additionale 1</label>
             <input type="file" id="additionalImage1" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="form-group">
-            <label for="additionalImage2">Additional Image 2</label>
+            <label for="additionalImage2">Image Additionale 2</label>
             <input type="file" id="additionalImage2" name="image_path[additional][]" accept="image/*">
         </div>
 
         <div class="form-group">
-            <label for="additionalImage3">Additional Image 3</label>
+            <label for="additionalImage3">Image Additionale 3</label>
             <input type="file" id="additionalImage3" name="image_path[additional][]" accept="image/*">
         </div>
 

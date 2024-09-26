@@ -48,6 +48,13 @@ Route::get('/catalog', 'StampController@list');
  */
 Route::post('/add-to-favourite', 'FavouriteController@toggle');
 
+/**
+ * Placer une mise
+ */
+// web.php
+Route::post('/place-your-bid', 'BidController@store');
+
+
 
 
 

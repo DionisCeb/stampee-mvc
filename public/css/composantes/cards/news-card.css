@@ -12,13 +12,24 @@
     text-align: center;
 
     opacity: 0;
-    animation: fadeIn 0.5s forwards;
+    animation: fadeIn 1s forwards;
 }
 
 /*img*/
+.news__img {
+    overflow: hidden;
+}
 .news__img img {
     border-radius: 10px;
     position: relative;
+    transform-origin: 50% 65%;
+    transition: transform 5s, filter 3s ease-in-out;
+    filter: brightness(150%);
+}
+
+.news__img:hover img {
+    filter: brightness(100%);
+    transform: scale(3); 
 }
 
 /*title*/

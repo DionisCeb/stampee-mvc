@@ -29,10 +29,12 @@ section.produit {
 /*The width of the big image section*/
 .produit__image-container .big-image{
     width: 70%;
+    overflow: hidden;
 }
 /*The width of the small image section*/
 .produit__image-container .small-images{
     width: 30%;
+    overflow: hidden;
 }
 
 
@@ -49,16 +51,25 @@ section.produit {
     object-fit: cover;
     height: 100%;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transform-origin: 50% 65%;
+    transition: transform 5s, filter 3s ease-in-out;
+    filter: brightness(150%);
 }
 
 
 .small-images img {
     opacity: 0.6;
 }
-.small-images img:hover,
-.big-image img:hover {
-    transform: scale(0.98); /* Adjust zoom level as needed */
+
+.big-image:hover img {
+    filter: brightness(100%);
+    transform: scale(3); 
+}
+
+.small-images:hover img
+{
+    filter: brightness(100%);
+    transform: scale(1.2); 
 }
 
 

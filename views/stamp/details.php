@@ -16,12 +16,15 @@
                         </div>
                     </div>
 
+                    <!-- Fullscreen Modal -->
+                    <div id="fullscreenModal" class="modal">
+                        <span class="close-modal" id="closeModal">&times;</span>
+                        <img class="modal-content" id="modalImg">
+                    </div>
+
                     <div class="produit__info">
                         <div class="info_main">
                             <h1 class="info__title">{{ stamp.name }}</h1>
-                            <p class="info__description">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus vitae, et, deserunt necessitatibus, atque natus impedit earum neque itaque voluptatem perspiciatis eligendi qui? Obcaecati, incidunt?
-                            </p>
                             <p>Auteur: {{ stamp.user_name }}</p>
                             
                             <h2 class="container__title">Caractéristiques</h2>
@@ -39,53 +42,37 @@
                             </div>
                             
                             {% if stamp.auction %}
-                            <!-- <div class="timer" style="justify-content: center;">
-                                <div>
-                                    <div class="time">
-                                        <span>Jours:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="days">02</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="time">
-                                        <span>Heures:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="hours">10</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="time">
-                                        <span>Minutes:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="minutes">02</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="time">
-                                        <span>Secondes:</span>
-                                    </div>
-                                    <div class="result">
-                                        <span class="seconds">32</span>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <p>Date de début de l'enchère: {{ stamp.auction.start_date }}</p>
-                            <p>Date de fin de l'enchère: {{ stamp.auction.end_date }}</p>
+                        
+                                <p>Date de début de l'enchère: {{ stamp.auction.start_date }}</p>
+                                <p>Date de fin de l'enchère: {{ stamp.auction.end_date }}</p>
 
-                            <p class="info__price">
-                                Prix de départ:
-                                <span class="price-new">${{ stamp.auction.starting_price }}</span>
-                            </p>
-                            <button class="btn add_to_cart_btn">
+                                <p class="info__price">
+                                    Prix de départ:
+                                    <span class="price-new">${{ stamp.auction.starting_price }}</span>
+                                </p>
+
+                            {% if stamp.highest_bid %}
+                                <p class="info__price">Mise actuelle: <span class="price-new">${{ stamp.highest_bid }}</span></p>
+                            {% endif %}
+                            <form action="{{ base }}/place-your-bid" method ="POST">
+                            <div class="bid-container"> 
+                                <input type="hidden" name="auction_id" value="{{ stamp.auction.id }}">
+                                <input class="number-input" 
+                                        type="number" 
+                                        name="bid_amount" 
+                                        id="" 
+                                        min="{{ stamp.highest_bid | default(stamp.auction.starting_price) }}" 
+                                        required 
+                                        placeholder="Votre mise (minimum: ${{ stamp.highest_bid | default(stamp.auction.starting_price) }})">
+
+                            </div>
+                            <button class="btn add_to_cart_btn" type="submit">
                                 Placez votre mise
                             </button>
-                            {% else %}
-                                <p>Cette timbre n'est pas aux enchères actuellement.</p>
-                            {% endif %}
+                                {% else %}
+                                    <p>Cette timbre n'est pas aux enchères actuellement.</p>
+                                {% endif %}
+                            </form>
                         </div>
                         
                 </section>

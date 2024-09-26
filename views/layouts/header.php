@@ -62,17 +62,29 @@
                 </div>
             </nav>
             <div class="toggle_btn">
-                <img src="{{asset}}/img/icons/nav/nav_bar.png" alt="nav_bar">
+                <img src="https://img.icons8.com/?size=100&id=36389&format=png&color=808080" alt="nav_bar">
             </div>
 
             <div class="dropdown_menu">
-                <li><a href="#" role="menuitem">Enchères</a></li>
-                <li><a href="#" role="menuitem">Catalogue</a></li>
-                <li><a href="#" role="menuitem">À propos</a></li>
-                <li><a href="#" role="menuitem">Actualité</a></li>
+                <li><a href="{{ base }}/catalog" role="menuitem">Enchères</a></li>
+                <li><a href="{{ base }}/page/about" role="menuitem">À propos</a></li>
+                <li><a href="{{ base }}/page/actual" role="menuitem">Actualité</a></li>
                 <div class="dropdown_menu--connection">
-                    <a href="#" class="action_btn " role="menuitem">Conexion</a>
-                    <a href="#" class="action_btn" role="menuitem">Enregistrer</a>
+                {% if  guest %}
+                    <a class="action_btn" href="{{base}}/login">Authentification</a>
+                {% endif %}    
+                {% if guest is empty %}
+                            <div class="greet-user">
+                                <p class="greet-user-text">Bonjour, <span>{{ session.name }}</span></p>
+                                <a href="{{ base }}/user/edit">
+                                    <div class="greet-user-img">
+                                        <img src="{{ asset }}img/profile/profile1.webp" alt="image of {{session.name}}">
+                                    </div>
+                                </a>
+                            </div>
+                            <a class="action_btn" href="{{base}}/logout">Déconnexion</a>
+                    {% endif %}
+                    
                 </div>
                 <div class="custom-select" style="width:100%;">
                     <select>

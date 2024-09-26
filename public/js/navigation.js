@@ -1,115 +1,53 @@
 /**Navigation adaptif*/
-const toggleBtn = document.querySelector(".toggle_btn");
-const toggleBtnImgs = document.querySelectorAll(".toggle_btn img");
-const dropDownMenu = document.querySelector(".dropdown_menu");
+const toggleBtnSelector = ".toggle_btn";
+const imgSelector = ".toggle_btn img";
+const dropDownMenuSelector = ".dropdown_menu";
 
-toggleBtn.onclick = function () {
-    // Add the 'open' class to display the menu
+const toggleBtn = document.querySelector(toggleBtnSelector);
+const toggleBtnImgs = document.querySelectorAll(imgSelector);
+const dropDownMenu = document.querySelector(dropDownMenuSelector);
+
+function init() {
+    toggleBtn.addEventListener("click", toggleMenu);
+    document.addEventListener("click", handleOutsideClick);
+}
+
+function toggleMenu() {
+    if (dropDownMenu.classList.contains("open")) {
+        closeMenu();
+        updateImages("https://img.icons8.com/?size=100&id=36389&format=png&color=808080");
+    } else {
+        openMenu();
+        updateImages("https://img.icons8.com/?size=100&id=46&format=png&color=808080");
+    }
+}
+
+function openMenu() {
     dropDownMenu.classList.add("open");
-    dropDownMenu.classList.remove("close"); // Ensure 'close' class is removed
-  
-    // Update image sources to reflect menu state
-    toggleBtnImgs.forEach((img) => {
-      img.src = "{{asset}}img/icons/nav/close.svg";
-    });
-  };
-  
-  // Function to close the dropdown menu
-  function closeDropDownMenu() {
-    // Remove the 'open' class to hide the menu
+    dropDownMenu.classList.remove("close");
+}
+
+function closeMenu() {
     dropDownMenu.classList.remove("open");
-    // Add the 'close' class to ensure menu is hidden
     dropDownMenu.classList.add("close");
-  
-    // Update image sources to reflect menu state
+}
+
+function updateImages(src) {
     toggleBtnImgs.forEach((img) => {
-      img.src = "{{asset}}img/icons/nav/nav_bar.svg";
+        img.src = src;
     });
-  }
-  
-  // Close the dropdown menu when clicking outside of it
-  document.addEventListener("click", function (event) {
+}
+
+function handleOutsideClick(event) {
     const isClickInside = toggleBtn.contains(event.target) || dropDownMenu.contains(event.target);
     if (!isClickInside) {
-      closeDropDownMenu();
+        closeMenu();
+        updateImages("https://img.icons8.com/?size=100&id=36389&format=png&color=808080");
     }
-  });
-  
-  // to close the dropdown menu when the toggle button is clicked again
-  toggleBtn.onclick = function () {
-    if (dropDownMenu.classList.contains("open")) {
-      closeDropDownMenu();
-    } else {
-      dropDownMenu.classList.add("open");
-      dropDownMenu.classList.remove("close");
-  
-      toggleBtnImgs.forEach((img) => {
-        img.src = "{{asset}}img/icons/nav/close.svg";
-      });
-    }
-  };
+}
 
-  /*Auth pop-up*/
- /*  document.addEventListener('DOMContentLoaded', function() {
-    const btnConnection = document.querySelector('.btn-connection');
-
-    // Function to create and show the popup
-    function showPopup() {
-        // Create popup container
-        const popup = document.createElement('div');
-        popup.id = 'popup';
-        popup.className = 'popup';
-        
-        // Create popup content
-        const popupContent = document.createElement('div');
-        popupContent.className = 'popup-content';
-        
-        // Create and add close button
-        const closeButton = document.createElement('span');
-        closeButton.className = 'popup-close';
-        closeButton.innerHTML = '&times;';
-        popupContent.appendChild(closeButton);
-        
-        // Create and add popup info
-        const popupInfo = document.createElement('div');
-        popupInfo.className = 'pop-up-info';
-        popupInfo.innerHTML = `
-            <h2>Authentification</h2>
-            <button class="btn action_btn btn-login">Se connecter</button>
-            <button class="btn action_btn btn-create-account">Créer un compte</button>
-        `;
-        popupContent.appendChild(popupInfo);
-
-        // Append popup content to popup container
-        popup.appendChild(popupContent);
-        
-        // Append popup container to the body
-        document.body.appendChild(popup);
-
-        // Show the popup
-        popup.style.display = 'flex';
-
-        // Handle close button click
-        closeButton.addEventListener('click', function() {
-            popup.style.display = 'none';
-            setTimeout(() => document.body.removeChild(popup), 300); // Remove after animation
-        });
-
-        // Handle click outside popup to close it
-        window.addEventListener('click', function(event) {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-                setTimeout(() => document.body.removeChild(popup), 300); // Remove after animation
-            }
-        });
-    }
-
-    // Show the popup when the button is clicked
-    btnConnection.addEventListener('click', function(event) {
-        event.preventDefault();
-        showPopup();
-    });
-}); */
+// Initialize the dropdown functionality
+init();
 
 
   /** Custom Dropdown Implementation */
