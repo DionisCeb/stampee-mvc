@@ -78,11 +78,15 @@
                         {% for auction in auctions %}
                         <div class="card__news card_catalog" style="animation-delay: 0.3s;">
                                 <div class="news__img">
-                                {% if stamp.images is not empty %}
-                                    <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
-                                {% else %}
-                                    <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
-                                {% endif %}
+                                    {% if stamp.images is not empty %}
+                                        <img src="{{ base ~ '/' ~ stamp.images[0].image_path }}" alt="{{ stamp.name }}">
+                                    {% else %}
+                                        <img src="{{ asset ~ 'img/timbres/produits/default-image.jpg' }}" alt="{{ stamp.name }}">
+                                    {% endif %}
+
+                                    {% if guest is empty %}
+                                        <a href="{{ base }}/auctioning/delete?id={{ auction.id }}" class="delete-button"><img src="{{ asset }}img/icons/utils/bin.png" alt="delete-btn"></a>
+                                    {% endif %}
                                 </div>
                                 <div class="auction-details">
                                     <h3>{{ auction.stamp.name }}</h3>

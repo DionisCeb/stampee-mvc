@@ -131,6 +131,11 @@
                                         <button type="submit" id='heart' class="button-heart {{ stamp.is_favourite ? 'active' : '' }}"></button>
     
                                     </form>
+
+                                    {% if session.privilege_id == 1 %}
+                                        <a href="{{ base }}/auctioning/delete?id={{ stamp.auction_id }}" class="delete-button"><img src="{{ asset }}img/icons/utils/bin.png" alt="delete-btn"></a>
+                                    {% endif %}
+
                                     {% endif %}
                                     {% if stamp.images is not empty %}
                                         <img src="{{ stamp.images[0].image_path }}" alt="{{ stamp.name }}">

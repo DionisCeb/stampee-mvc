@@ -86,6 +86,31 @@ class Auction extends CRUD {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
     
+
+    /**
+     * Delete the auction
+     */
+
+     public function deleteAuction($auctionId) {
+        // Delete related bids first (if necessary)
+        $sqlBids = "DELETE FROM bid WHERE auction_id = :auction_id"; 
+        $stmtBids = $this->prepare($sqlBids);
+        $stmtBids->bindParam(':auction_id', $auctionId);
+        $stmtBids->execute();
+
+        // Delete related favourite entries
+        $sqlFavourite = "DELETE FROM favourite WHERE auction_id = :auction_id";
+        $stmtFavourite = $this->prepare($sqlFavourite);
+        $stmtFavourite->bindParam(':auction_id', $auctionId);
+        $stmtFavourite->execute();
+
+        //Delete the auction itself
+        $sql = "DELETE FROM " . $this->table . " WHERE id = :auction_id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindParam(':auction_id', $auctionId);
+    
+        return $stmt->execute();
+     }
     
 
     

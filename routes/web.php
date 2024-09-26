@@ -69,6 +69,12 @@ Route::get('/auctioning/edit', 'AuctionController@edit');
 Route::post('/auctioning/update', 'AuctionController@update');
 
 
+/**
+ * Delete auction
+ */
+Route::get('/auctioning/delete', 'AuctionController@delete');
+
+
 Route::dispatch();
 
 

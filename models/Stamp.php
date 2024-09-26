@@ -51,7 +51,7 @@ class Stamp extends CRUD {
      */
     public function findAllStampsOfAuction() {
         // Requête SQL pour obtenir toutes les timbres dans une enchere
-        $sql = "SELECT s.* 
+         $sql = "SELECT s.*, a.id as auction_id 
             FROM " . $this->table . " AS s
             JOIN auctions AS a ON s.id = a.stamp_id";
         

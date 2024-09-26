@@ -167,7 +167,44 @@ class AuctionController {
             'scripts' => ['product-card-slider.js']
         ]);
     }
+
+    /**
+     * Delete an auction
+     */
+    public function delete() {
+        // Check if an auction ID is provided
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            return View::redirect('catalog'); // Redirect if no valid ID is provided
+        }
     
+        $auctionId = intval($_GET['id']);
+        $auctionModel = new Auction();
+        $auction = $auctionModel->findOne($auctionId);
     
+        if (!$auction) {
+            return View::redirect('catalog'); // Redirect if auction not found
+        }
+    
+        // Check if the user is logged in
+        if (!isset($_SESSION['user_id'])) {
+            return View::redirect('login');
+        }
+    
+        $userId = $_SESSION['user_id'];
+        $privilegeId = $_SESSION['privilege_id'];
+    
+        // Allow deletion only if the user is the creator or has privilege 1 (admin)
+        if ($auction['user_id'] == $userId || $privilegeId == 1) {
+            $deleted = $auctionModel->delete($auctionId);
+    
+            if ($deleted) {
+                return View::redirect('catalog');
+            } else {
+                return View::render('error', ['message' => "Unable to delete the auction."]);
+            }
+        } else {
+            return View::redirect('catalog'); // Redirect if the user doesn't have permission
+        }
+    }
     
 }

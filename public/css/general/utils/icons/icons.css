@@ -1,0 +1,14 @@
+.delete-button {
+    position: absolute;
+    z-index: 999;
+}
+
+
+.delete-button {
+    position: absolute;
+    z-index: 999;
+}
+
+.delete-button img {
+    transition: none; /* Ensure no transition on the delete button image */
+}

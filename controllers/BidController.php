@@ -45,6 +45,7 @@ class BidController {
         ]);
 
         if ($inserted) {
+            $_SESSION['bid_status'] = 'Votre mise a été placée avec succès!';
             return View::redirect('stamp/details?id=' . $auction['stamp_id']);
         } else {
             return View::render('error/error', ['message' => "Impossible de placer la mise."]);
