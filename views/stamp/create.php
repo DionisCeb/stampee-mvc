@@ -1,8 +1,8 @@
-{{ include('layouts/header.php', {title:'Create your Stamp'})}}
+{{ include('layouts/header.php', {title:'Créez votre timbre'})}}
 
 
 <div class="create-form-container">
-    <h1>Create New Stamp</h1>
+    <h1>Créez votre timbre</h1>
     
     <form action="{{ base }}/stamp/create" method="post" class="create-stamp-form" enctype="multipart/form-data">
         <!-- Stamp Name -->
@@ -14,7 +14,7 @@
         <!-- Creation Date -->
         <div class="form-group">
             <label for="creationDate">Date de Creation</label>
-            <input type="date" id="creationDate" name="creation_date" required>
+            <input type="date" id="start-date" name="creation_date" required>
         </div>
 
         <!-- Colors -->
@@ -33,8 +33,11 @@
         <div class="form-group">
             <label for="condition">Condition</label>
             <select id="condition" name="stamp_condition" required>
-                <option value="mint">Mint</option>
-                <option value="used">Used</option>
+                <option value="mint">Neuf</option>
+                <option value="used">En bon état</option>
+                <option value="used">D'occasion</option>
+                <option value="used">Endommagé</option>
+                <option value="used">Usé</option>
             </select>
         </div>
 
@@ -47,15 +50,15 @@
         <!-- Dimensions -->
         <div class="form-group">
             <label for="dimensions">Dimensions (mm)</label>
-            <input type="text" id="dimensions" name="dimensions" placeholder="Width x Height" required>
+            <input type="text" id="dimensions" name="dimensions" placeholder="Largeur x Hauteur" required>
         </div>
 
         <!-- Certification -->
         <div class="form-group">
             <label for="certified">Certifie</label>
             <select id="certified" name="certified" required>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
             </select>
         </div>
 

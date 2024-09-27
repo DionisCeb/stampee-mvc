@@ -24,7 +24,7 @@ class StampController{
     public function create(){
         
         View::render('stamp/create', ['scripts'=> [
-            'product-card-slider.js',
+            'select-dates.js',
         ]]);
     }
 
@@ -103,12 +103,16 @@ class StampController{
         $userModel = new User();
         $stampImageModel = new StampImage();
         $favouriteModel = new Favourite();
+        $auctionModel = new Auction();
     
         // Fetch all stamps that are part of an auction
         $stamps = $stampModel->findAllStampsOfAuction();
     
         // Fetch the favorite auctions of the Lord
         $lordFavourites = $favouriteModel->findLordFavourites();
+
+        // Fetch archived auctions
+        $archivedAuctions = $auctionModel->findArchivedAuctions();
     
         // Process all stamps
         foreach ($stamps as &$stamp) {
@@ -120,6 +124,9 @@ class StampController{
             $stamp['user_name'] = $user ? $user['name'] : 'Unknown';
         }
     
+        /**
+         * Favourite of Lord
+         */
         foreach ($lordFavourites as &$favourite) {
             $images = $stampImageModel->findByStampId($favourite['stamp_id']);
             $favourite['images'] = $images;
@@ -128,12 +135,25 @@ class StampController{
             $user = $userModel->findOne($favourite['user_id']);
             $favourite['user_name'] = $user ? $user['name'] : 'Unknown';
         }
+
+        // Process archived auctions
+        foreach ($archivedAuctions as &$archived) {
+            $images = $stampImageModel->findByStampId($archived['stamp_id']);
+            $archived['images'] = $images;
+
+            $user = $userModel->findOne($archived['user_id']);
+            $archived['user_name'] = $user ? $user['name'] : 'Unknown';
+        }
     
         // Pass both regular stamps and Lord's favorite stamps to the view
         View::render('stamp/catalog', [
             'stamps' => $stamps,
             'lordFavourites' => $lordFavourites,
-            'scripts' => ['heartlord.js']
+            'archivedAuctions' => $archivedAuctions,
+            'scripts' => [
+                'heartlord.js',
+                'filter-catalog.js'
+            ]
         ]);
     }
     
@@ -180,7 +200,9 @@ class StampController{
         }
         
         View::render('stamp/edit', [
-            'scripts' => ['product-card-slider.js'],
+            'scripts' => [
+                'select-dates.js',
+            ],
             'stamp' => $stamp,
             'conditions' => $conditions,
             'additional_images' => $imagePaths // Pass additional images to the view

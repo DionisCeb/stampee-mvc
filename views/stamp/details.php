@@ -40,44 +40,52 @@
                                     <div class="list-item" style="padding: 10px;"><span class="item-title">Certifié :</span> <span class="item-desc">{{ stamp.certified == 'Oui' ? 'Oui' : 'Non' }}</span></div>
                                 </div>
                             </div>
-                            
                             {% if stamp.auction %}
-                        
                                 <p>Date de début de l'enchère: {{ stamp.auction.start_date }}</p>
                                 <p>Date de fin de l'enchère: {{ stamp.auction.end_date }}</p>
 
-                                {% if stamp.highest_bid %}
-                                    <p class="info__price">Mise actuelle: <span class="price-new">${{ stamp.highest_bid }}</span></p>
+                                {% set currentDate = "now"|date("Y-m-d") %}
+
+                                {# Check if the auction is still active #}
+                                {% if currentDate > stamp.auction.end_date %}
+                                    <p class="info__price">Dernier prix: <span class="price-new">${{ stamp.auction.starting_price }}</span></p>
+                                    <p class="info__price">Cette enchère est passée.</p>
                                 {% else %}
-                                    <p class="info__price">Prix de départ: <span class="price-new">${{ stamp.auction.starting_price }}</span></p>
+                                    {% if stamp.highest_bid %}
+                                        <p class="info__price">Mise actuelle: <span class="price-new">${{ stamp.highest_bid }}</span></p>
+                                    {% else %}
+                                        <p class="info__price">Prix de départ: <span class="price-new">${{ stamp.auction.starting_price }}</span></p>
+                                    {% endif %}
+
+                                    <form action="{{ base }}/place-your-bid" method="POST">
+                                        <div class="bid-container"> 
+                                            <input type="hidden" name="auction_id" value="{{ stamp.auction.id }}">
+                                            <input class="number-input" 
+                                                type="number" 
+                                                name="bid_amount" 
+                                                id="" 
+                                                min="{{ (stamp.highest_bid is defined ? stamp.highest_bid + 1 : stamp.auction.starting_price + 1) }}" 
+                                                required 
+                                                placeholder="Votre mise (minimum: ${{ (stamp.highest_bid is defined ? stamp.highest_bid + 1 : stamp.auction.starting_price + 1) }})">
+                                        </div>
+
+                                        {% if session.bid_status %}
+                                            <div class="showBidStatus">
+                                                {{ session.bid_status }}
+                                            </div>
+                                            {% set _ = session.remove('bid_status') %}
+                                        {% endif %}
+
+                                        <button class="btn add_to_cart_btn" type="submit">
+                                            Placez votre mise
+                                        </button>
+                                    </form>
                                 {% endif %}
-
-                            <form action="{{ base }}/place-your-bid" method ="POST">
-                            <div class="bid-container"> 
-                                <input type="hidden" name="auction_id" value="{{ stamp.auction.id }}">
-                                <input class="number-input" 
-                                        type="number" 
-                                        name="bid_amount" 
-                                        id="" 
-                                        min="{{ (stamp.highest_bid is defined ? stamp.highest_bid + 1 : stamp.auction.starting_price + 1) }}" 
-                                        required 
-                                        placeholder="Votre mise (minimum: ${{ (stamp.highest_bid is defined ? stamp.highest_bid + 1 : stamp.auction.starting_price + 1) }})">
-
-                            </div>
-                            {% if session.bid_status %}
-                                <div class="showBidStatus">
-                                    {{ session.bid_status }}
-                                </div>
-                                {% set _ = session.remove('bid_status') %}
+                            {% else %}
+                                <p>Cette timbre n'est pas aux enchères actuellement.</p>
                             {% endif %}
 
-                            <button class="btn add_to_cart_btn" type="submit">
-                                Placez votre mise
-                            </button>
-                                {% else %}
-                                    <p>Cette timbre n'est pas aux enchères actuellement.</p>
-                                {% endif %}
-                            </form>
+
                         </div>   
                         <script>
                             setTimeout(function() {

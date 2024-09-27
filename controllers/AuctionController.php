@@ -40,7 +40,7 @@ class AuctionController {
 
         // Pass stamp data to the auction creation view
         View::render('auction/create', [
-            'scripts' => ['active-link.js'],
+            'scripts' => ['select-dates.js'],
             'stamp' => $stamp, // Pass the stamp data for display if needed
             'stamp_id' => $stampId // Pass the stamp_id to the form
         ]);
@@ -107,7 +107,7 @@ class AuctionController {
     
         View::render('auction/edit', [
             'auction' => $auction,
-            'scripts' => ['active-link.js']
+            'scripts' => ['select-dates.js'],
         ]);
     }
 

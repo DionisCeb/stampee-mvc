@@ -85,6 +85,23 @@ class Auction extends CRUD {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Archieved Auctions
+     */
+    // In the Auction model
+    public function findArchivedAuctions() {
+        $sql = "SELECT a.*, s.* 
+                FROM " . $this->table . " AS a
+                JOIN stamp AS s ON a.stamp_id = s.id
+                WHERE a.end_date < CURDATE()";
+        
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     
 
     /**

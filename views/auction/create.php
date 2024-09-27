@@ -8,11 +8,11 @@
         <input type="hidden" name="stamp_id" value="{{ stamp.id }}">
         <div class="form-group">
             <label for="start_date">Date de début</label>
-            <input type="date" id="start_date" name="start_date" required>
+            <input type="date" id="start-date" name="start_date" required>
         </div>
         <div class="form-group">
             <label for="end_date">Date de fin</label>
-            <input type="date" id="end_date" name="end_date" required>
+            <input type="date" id="end-date" name="end_date" required>
         </div>
         <div class="form-group">
             <label for="starting_price">Prix de départ</label>
